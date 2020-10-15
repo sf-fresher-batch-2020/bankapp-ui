@@ -12,8 +12,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
         crossorigin="anonymous"></script>
-        
-    <link rel="stylesheet" href="assets/css/style.css"></link>
+        <link rel="stylesheet" href="assets/css/style.css"></link>
 </head>
 
 <body>
@@ -22,13 +21,20 @@
     </header>
     <main class="container-fluid">        
         <div id="page-content">
-            <div class="page-title"> Home Page </div>
-            <div class="row">
-                <div class="col">
-                    Welcome to Banking app
-                </div>
+            <!-- Developed by Priya-->
+            <form>
+                <h1>Withdrawal</h1>
+                <p>Select Account Type</p>
+                <input type="radio" id="100" name="Personal" value="Personal Account" >
+                <label for="personal">Personal Accountant</label>
+                <input type="radio" id="101" name="Business" value="Business Account" >
+                <label for="Business">Business Accountant</label><br><br>
+                <label for="Amount">Enter Amount</label><br>
+                <input type="number" id="Amount" name="Amount"><br><br>
+                <input type="submit" value="submit">
                 
-            </div>
+            </form>
+            
         </div>
     </main>
     <script>

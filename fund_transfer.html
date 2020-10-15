@@ -12,8 +12,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
         crossorigin="anonymous"></script>
-        
-    <link rel="stylesheet" href="assets/css/style.css"></link>
+        <link rel="stylesheet" href="assets/css/style.css"></link>
 </head>
 
 <body>
@@ -22,13 +21,23 @@
     </header>
     <main class="container-fluid">        
         <div id="page-content">
-            <div class="page-title"> Home Page </div>
-            <div class="row">
-                <div class="col">
-                    Welcome to Banking app
-                </div>
-                
-            </div>
+            <!-- Developed by Ishwarya-->
+            <form action="fund transfer" method="post">
+                <label>fundtransfer</label>
+                <select name="payee" id="payee" required>
+                    <option value="">--PLEASE SELECT --</option>
+                    <option value="1">sowmiya-001</option>
+                    <option value="2">abi-002</option>
+                </select>
+                <br/>
+                <br/>
+                <label>amount</label>
+                <input type="number" name="amount" id="amount" required/>
+                <label>comment</label>
+                <textarea name="comment" form="comment" rows="3" cols="20">Enter text here.....</textarea>
+        ​
+            </form>
+        
         </div>
     </main>
     <script>
