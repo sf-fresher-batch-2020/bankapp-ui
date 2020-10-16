@@ -19,22 +19,48 @@
     <header id="header">
         <!-- Load Header content-->
     </header>
-    <main class="container-fluid">
+    <main class="bg-light">
+        <nav class="navbar navbar-secondary bg-secondary">
+            <span class="navbar-brand mb-0 text-white">Add Your Bank Account Payee</span>
+            <div class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <a class="text-white" href="/payee_list.html">View Payee List</a>
+            </div>
+        </nav>
         <div id="page-content">
-            <!-- Developed By Madhu-->
-            <div style="width: 300px; padding: 10px;">
-                <h3>Add Payee</h3>
-                <form style="padding: 20px;" onsubmit="addPayee()">
-                    <p class="badge-info badge-pill">Note: All the fields are required</p>
-                    <input class="form-control" type="text" name="payee_name" id="payee_name" required placeholder="Short Name" required autofocus> <br>
-                    <input class="form-control" type="number" minlength="10" name="account_number" id="account_number" required placeholder="Account Number"><br>
-                    <input class="form-control" type="text" name="holder_name" id="holder_name" placeholder="Account Holder Name" required><br>
-                    <input class="form-control" type="text" name="ifsc" id="ifsc" placeholder="IFSC Code" required><br>
+            <!-- Developed By Kiran Maddu-->
+            <div class="col-sm-4">
+                <form style="padding: 20px 0px 0px 20px;" onsubmit="addPayee()">
+                    <div class="form-group">
+                        <label for="payee_name">Short Name * </label>
+                        <input class="form-control" type="text" name="payee_name" id="payee_name" required placeholder="Harry" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="account_number">Account Number * </label>
+                        <input class="form-control" type="number" minlength="10" name="account_number" id="account_number" required placeholder="2001201108">
+                        <small class="form-text text-muted">Ensure Account Number before submitting</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="holder_name">Account Holder Name * </label>
+                        <input class="form-control" type="text" name="holder_name" id="holder_name" placeholder="Harry Potter" required>
+                        <small class="form-text text-muted">As Per the name in Bank Account Details</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="ifsc">IFSC Code</label>
+                        <input class="form-control" type="text" name="ifsc" id="ifsc" placeholder="GWB001474">
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number *</label>
+                        <input class="form-control" type="text" name="mobile" id="mobile" placeholder="1234567890" required>
+                        <small class="form-text text-muted">Payee registration alert will be sent to this number!</small>
+                    </div>
+                    <button class="btn btn-secondary" type="reset" onclick="location.href = '/index.html';">Back</button>
                     <button class="btn btn-info" type="submit">Add Payee</button>
                 </form>
             </div>
         </div>
     </main>
+
+
     <script>
         $("#header").load("components/_header.html");
 
