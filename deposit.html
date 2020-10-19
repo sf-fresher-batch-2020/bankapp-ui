@@ -13,6 +13,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="assets/css/style.css"></link>
+    <script>
+    </script>
 </head>
 
 <body>
@@ -45,6 +47,31 @@
     </main>
     <script>
         $("#header").load("components/_header.html");
+        function getAmount() {
+            event.preventDefault();
+
+            let name = document.querySelector('#user').value;
+            let acc_type = document.querySelector('#acc_type').value;
+            let amount = document.querySelector('#amount').value;
+
+            var myObj = {
+                'user_name': name,
+                'acc_type': acc_type,
+                'amount': amount,
+            };
+
+            let result = depositAmount(myObj);
+            console.log(result);
+
+        }
+
+        function depositAmount(myObj) {
+            console.log("Depositing money..!", myObj);
+          
+            return "success";
+        }
+
+            
     </script>
 </body>
 
