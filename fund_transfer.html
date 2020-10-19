@@ -22,8 +22,8 @@
     <main class="container-fluid">        
         <div id="page-content">
             <!-- Developed by Ishwarya-->
-            <form action="fund transfer" method="post">
-                <label>FundTransfer</label>
+            <form action="fund transfer" method="post" onsubmit="fundtransfer()">
+                <label>fundtransfer</label>
                 <select name="payee" id="payee" required>
                     <option value="">--PLEASE SELECT --</option>
                     <option value="1">sowmiya-001</option>
@@ -32,16 +32,36 @@
                 <br/>
                 <br/>
                 <label>amount</label>
-                <input type="number" name="amount" id="amount" required/>
+                <input type="number" name="amount" id="amount" required/></br>
                 <label>comment</label>
-                <textarea name="comment" form="comment" rows="3" cols="20">Enter text here.....</textarea>
-        ​
+                <textarea name="comment" form="comment" rows="3" cols="20">Enter text here.....</textarea></br>
+                <button type="submit">fundtransfer</button>
             </form>
         
         </div>
     </main>
     <script>
         $("#header").load("components/_header.html");
+        function fundtransfer(){
+            event.preventDefault();
+            alert("Submit Button clicked");
+            var amount=document.getElementById("amount").value;
+            var comment=document.getElementById("comment").value;
+            var provider = document.getElementById("provider").value;
+            console.log("amount:" + amount + ",comment:" + comment + ",provider:" + provider);
+            let obj = {"provider" : provider, "amount" : amount, "comment" : comment};
+            console.log(obj);
+            let results = sendDatatoBackend(obj);
+            console.log("Results from Backend:" , results);
+        }
+        function sendDatatoBackend(userdetails){
+            console.log("sending Data to backend, userdetails");
+            let results = "sucess";
+            return results;
+        }
+        
+       
+        
     </script>
 </body>
 
