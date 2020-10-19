@@ -87,6 +87,13 @@
 
         function storePayeeInDB(payee_data) {
             console.log("Sending data to backend.....!", payee_data);
+            var data = [];
+            data.push(payee_data);
+            console.log(data);
+            console.log(data.length);
+            for (let obj of data) {
+                console.log(obj);
+            }
             return "success";
         }
     </script>
