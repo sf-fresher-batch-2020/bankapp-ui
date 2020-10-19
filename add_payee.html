@@ -68,22 +68,26 @@
 
             event.preventDefault();
 
-            var name = document.getElementById('payee_name').value;
-            var acc_no = document.getElementById('account_number').value;
-            var holder_name = document.getElementById('holder_name').value;
-            var ifsc = document.getElementById('ifsc').value;
+            let name = document.querySelector('#payee_name').value;
+            let acc_no = document.querySelector('#account_number').value;
+            let holder_name = document.querySelector('#holder_name').value;
+            let ifsc = document.querySelector('#ifsc').value;
 
-            var payee = [];
+            var payee = {
+                'name': name,
+                'acc_no': acc_no,
+                'holder_name': holder_name,
+                'ifsc': ifsc
+            };
 
-            payee[0] = name;
-            payee[1] = acc_no;
-            payee[2] = holder_name;
-            payee[3] = ifsc;
+            let result = storePayeeInDB(payee);
+            console.log(result);
 
-            localStorage.setItem("payee", JSON.stringify(payee));
+        }
 
-            alert(name + " has been added as a Payee..!");
-
+        function storePayeeInDB(payee_data) {
+            console.log("Sending data to backend.....!", payee_data);
+            return "success";
         }
     </script>
 </body>
