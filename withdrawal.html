@@ -31,6 +31,7 @@
                 <label for="Business">Business Accountant</label><br><br>
                 <label for="Amount">Enter Amount</label><br>
                 <input type="number" id="Amount" name="Amount"><br><br>
+       
                 <input type="submit" value="submit">
                 
             </form>
@@ -38,6 +39,22 @@
         </div>
     </main>
     <script>
+         function login(){
+            event.preventDefault();
+            alert("Submit Btn clicked"); 
+            var radios = document.getElementsByName('Typ_Acc');
+
+            for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+            var val=radios[i].value;
+            break;
+           }
+          }
+           var Amount = document.querySelector("#Amount").value;
+           let obj ={"ACC_TYP": val,"Amount": Amount};
+           console.log(obj);
+            
+        }
         $("#header").load("components/_header.html");
     </script>
 </body>

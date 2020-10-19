@@ -12,8 +12,8 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
         crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="assets/css/style.css"></link>
-</head>
+    <link rel="stylesheet" href="assets/css/style.css"></link>
+    </head>
 
 <body>
     <header id="header">
@@ -24,7 +24,7 @@
             <!-- Developed by Ashwini-->
             <h3>Deposit amount</h3>
 <label for="users">Choose User</label>
-        <select name="user" id="users">
+        <select name="user" id="user">
             <option value="ashwini">Ashwini</option>
             <option value="brindha">Brindha</option>
             <option value="kalyani">kalyani</option>
@@ -32,12 +32,12 @@
         </select>
 
         <p>Please select account type</p>
-        <input type="radio" id="savings" name="acc_type" value="savings">
+        <input type="radio" id="acc_type" name="acc_type" value="savings">
         <label for="savings">Savings</label><br>
-        <input type="radio" id="current" name="acc_type" value="current">
+        <input type="radio" id="acc_type" name="acc_type" value="current">
         <label for="current">Current</label><br>   
 <form action="">
-        <input type="number" placeholder="enter amount required">
+        <input type="number" id="amount" placeholder="enter amount required">
         <br>
         <button type="submit">deposit</button>
     </form>
@@ -45,6 +45,31 @@
     </main>
     <script>
         $("#header").load("components/_header.html");
+        function getAmount() {
+            event.preventDefault();
+
+            let name = document.querySelector('#user').value;
+            let acc_type = document.querySelector('#acc_type').value;
+            let amount = document.querySelector('#amount').value;
+
+            var myObj = {
+                'user_name': name,
+                'acc_type': acc_type,
+                'amount': amount,
+            };
+
+            let result = depositAmount(myObj);
+            console.log(result);
+
+        }
+
+        function depositAmount(myObj) {
+            console.log("Depositing money..!", myObj);
+          
+            return "success";
+        }
+
+            
     </script>
 </body>
 

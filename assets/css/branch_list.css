@@ -1,0 +1,86 @@
+ p{
+      font-size: 15px;
+  }  
+ .section-title h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 35px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-top: 30px;
+  text-transform: capitalize; 
+  }
+  .section-title h4 {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-top: 30px;
+  text-transform: capitalize;
+  }
+.styled-select
+{
+   
+             height: 90px;
+             padding-top: 10px;
+            
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24'  viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 5px;
+  border: 1px solid rgb(173, 164, 164);
+  margin-right: 10px;
+  padding: 5px;
+  padding-right: 2rem;
+}
+#tablestyle{
+    background-color:rgb(27, 27, 136);
+    color:white;
+    font-size: 15px;
+    border-color: WHITE;
+    }
+    td,tr{
+    border-collapse: separate;
+    padding: 1px;
+    border-spacing: 15px 50px;  
+    width: 23%;
+    text-align: center;
+    border-color: cornsilk;
+     }
+     #account-type
+     {
+    margin-left: -70px;
+    border-style: groove;
+    color:black;
+    font-size: 16px;
+    text-align:left;
+    height:127px;
+    width:650px;
+     }
+#img
+{
+    width: 100%;
+    height: calc(60vh - 40px);
+    background: url(assets/css/quick-fund-transfer.jpg) no-repeat ;
+    background-size: 100%;
+    box-shadow: 10px 10px 15px grey;
+    margin-top: 40px;
+    position: relative;
+}
+.fade-in{ 
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards; 
+} 
+  
+@keyframes fadeInAnimation { 
+    0% { 
+        opacity: 0; 
+    } 
+    100% { 
+        opacity: 1; 
+     } 
+} 

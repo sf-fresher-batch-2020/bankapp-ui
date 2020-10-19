@@ -23,21 +23,21 @@
         <div id="page-content">
             <!-- Developed By Celshia -->
             <h1>Mobile Recharge </h1>
-            <form action="backend" method="post">
+            <form action="backend" method="post" onsubmit="recharge()">
                 
                 <label for="Provider"><b>Provider</b></label>
-                <select name="Provider" name="Provider">
-                    <option value="volvo">Bsnl</option>
-          <option value="saab">Jio</option>
-          <option value="opel">Airtel</option>
-          <option value="audi">Idea</option>
-        </select><br>
+                <select name="Provider" id="Provider" name="Provider">
+                    <option value="Bsnl">Bsnl</option>
+                    <option value="Jio">Jio</option>
+                    <option value="Airtel">Airtel</option>
+                    <option value="Idea">Idea</option>
+                </select><br>
         ​
-                <label for="Mobile No"><b>Mobile No</b></label>
-                <input type="number" placeholder="Enter Mobile No" name="Mobile No"><br>
+                <label for="MobileNo"><b>Mobile No</b></label>
+                <input type="number" id="MobileNo" placeholder="Enter Mobile No" name="MobileNo" required><br>
                 
                 <label for="Amount"><b>Amount</b></label>
-                <input type="number" placeholder="Enter Amount" name="Amount"><br>
+                <input type="number" id="Amount" placeholder="Enter Amount" name="Amount" required><br>
                 
                 <button type="submit">Recharge</button>
             </form>
@@ -46,7 +46,15 @@
     </main>
     <script>
         $("#header").load("components/_header.html");
+        function recharge(){
+            event.preventDefault();
+            alert("Submit Button clicked");        
+            var MobileNo = document.getElementById("MobileNo").value;
+            var Amount = document.getElementById("Amount").value;
+            console.log(document.getElementById("Provider").value);
+            console.log("MobileNo:" + MobileNo + ",Amount:" + Amount);
+        }
+       
     </script>
 </body>
-
 </html>
