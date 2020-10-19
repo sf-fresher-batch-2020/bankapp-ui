@@ -23,7 +23,7 @@
         <div id="page-content">
             <!-- Developed by Paras-->
             <form onsubmit="getitems()">
-                <select name="select_user" id="user_type" >
+               <br/> <select name="select_user" id="user_type" >
                       <option aria-readonly="true">--Select the User--</option>
                       <option value="user1" >User 1</option>
                       <option value="user2">User 2</option>
@@ -44,8 +44,10 @@
         </div>
     </main>
     <script>
+         $("#header").load("components/_header.html");
+
         function getitems(){
-        $("#header").load("components/_header.html");
+       
         event.preventDefault();
         var user = document.getElementById("user_type").value;
         let accountOption = document.getElementsByName("activate");

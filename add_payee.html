@@ -103,6 +103,13 @@
                 console.log(obj);
             }
 
+            // Convert Arrays to String
+            let dataAsStr = JSON.stringify(data);
+            console.log("Data as string: " + dataAsStr);
+            // Convert String to JSON
+            let dataAsArray = JSON.parse(dataAsStr);
+            console.log("Data as array" + dataAsArray);
+
             return "success";
         }
     </script>

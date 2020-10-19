@@ -63,6 +63,7 @@
     <header id="header">
         <!-- Load Header content-->
     </header>
+    <!-- By Tushant-->
     <div class="container-fluid py-3">
         <div class="row">
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
@@ -75,9 +76,9 @@
                         <form action="/echo" method="post" novalidate="novalidate" class="needs-validation">
                             
                             <div class="form-group">
-                                <label for="x_zip" class="control-label mb-1">Name</label>
-                                <input id="x_zip" name="x_zip" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the ZIP/Postal code" autocomplete="postal-code">
-                                <span class="help-block" data-valmsg-for="x_zip" data-valmsg-replace="true"></span>
+                                <label for="x_name" class="control-label mb-1">Name</label>
+                                <input id="x_name" name="x_zip" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the Name" autocomplete="postal-code">
+                                <span class="help-block" data-valmsg-for="x_name" data-valmsg-replace="true"></span>
                             </div>
                             <div class="form-group">
                                 <label for="cc-number" class="control-label mb-1">Card number</label>
@@ -123,8 +124,21 @@
             </div>
         </div>
     </div>
-    
-    
+   
+    <div class="table-div">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> S.no </th>
+                    <th> Name </th>
+                    <th> Card Number </th>
+                    <th> Exp_date</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        </div>
     <!-- Footer -->
 
 <footer class="page-footer font-small  bg-dark">
@@ -263,7 +277,7 @@
 
 $("#payment-button").click(function(e) {
 
-    
+    e.preventDefault();
     var form = $(this).parents('form');
     
     var cvv = $('#x_card_code').val();
@@ -301,13 +315,25 @@ $("#payment-button").click(function(e) {
         return false;
       }
       
+      var sno = 0;
+$("form button.btn").click(function() {
+    var name = $("#x_name").val();
+    var cc_number = $("#cc-number").val();
+    var cc_exp= $("#cc-exp").val();
+    var new_row = "<tr><td>" + ++sno + "</td><td>" + name + "</td><td>" + cc_number + "</td><td>" + cc_exp + "</td></tr>";
+    $("table tbody").append(new_row);
+    return false;
+});
       
-      
-      form.submit();
+  
     }
     
     form.addClass('was-validated');
 });
+   </script>
+   <script>
+    
+
    </script>
 </body>
 
