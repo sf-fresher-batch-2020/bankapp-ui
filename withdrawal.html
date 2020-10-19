@@ -46,12 +46,14 @@
 
             for (var i = 0, length = radios.length; i < length; i++) {
             if (radios[i].checked) {
-            console.log( "ACC_TYP:" +radios[i].value);
+            var val=radios[i].value;
             break;
-              }
+           }
           }
-             var Amount = document.getElementById("Amount").value;
-            console.log( "Amount:" + Amount);
+           var Amount = document.querySelector("#Amount").value;
+           let obj ={"ACC_TYP": val,"Amount": Amount};
+           console.log(obj);
+            
         }
         $("#header").load("components/_header.html");
     </script>
