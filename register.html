@@ -35,11 +35,12 @@
         <div id="page-content">
             <!-- Developed by Sai Brindha -->
             <h1>Registration form</h1>
+            <form onsubmit="register()">
            <form action="" method"POST">
     <label>Name</label><input type="text" name="username" placeholder="Enter your name" id="name" required autofocus></br>
     <label>Email ID</label><input type="email" name="email id" placeholder="Enter your mail id" id="email" required></br>
-    <label>Password</label><input type="password" name="pass" value="password" id="pass"required></br>
-    <label>DOB</label><input type="date" id="dob" value="DOB"></br>
+    <label>Password</label><input type="password" name="pass" id="pass"required></br>
+    <label>DOB</label><input type="date" id="dob"></br>
     <label>Gender</label><input type="radio" name="Gender" id="m" value="m">male
     <input type="radio" name="Gender" id="f" value="f">female</br>
     <input type="submit" value="register">
@@ -50,6 +51,27 @@
 </main>
 <script>
     $("#header").load("components/_header.html");
+    function register()
+       {
+           event.preventDefault();
+           alert("registered successfully");
+           var Name=document.getElementById("name").value;
+           var email=document.getElementById("email").value;
+           var password=document.getElementById("password").value;
+           var DOB = document.getElementById("dob").value;      
+           let genderOptions = document.getElementsByName("gender");
+           let gender = null;
+            for(let option of genderOptions){
+            if(option.checked){
+                gender = option.value;
+                break;
+            }
+        }
+        console.log(gender);
+        
+       var result={"name":Name, "email":email, "password":password, "dob" :DOB,"gender": gender }
+       console.log(result);
+       }
 </script>
 </body>
 
