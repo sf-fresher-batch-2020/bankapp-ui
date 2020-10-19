@@ -68,6 +68,8 @@
 
             event.preventDefault();
 
+            // getting form data
+
             let name = document.querySelector('#payee_name').value;
             let acc_no = document.querySelector('#account_number').value;
             let holder_name = document.querySelector('#holder_name').value;
@@ -80,13 +82,19 @@
                 'ifsc': ifsc
             };
 
+            // calling a function to send data to db
+
             let result = storePayeeInDB(payee);
             console.log(result);
 
         }
 
+        // function to store data in backend
         function storePayeeInDB(payee_data) {
+
             console.log("Sending data to backend.....!", payee_data);
+
+            // storing data in arrays
             var data = [];
             data.push(payee_data);
             console.log(data);
@@ -94,6 +102,7 @@
             for (let obj of data) {
                 console.log(obj);
             }
+
             return "success";
         }
     </script>
