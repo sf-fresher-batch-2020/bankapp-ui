@@ -19,6 +19,7 @@
     </header>
     <main class="container-fluid">        
         <div id="page-content">
+            <div id= "message"></div>
             <!-- Developed by Sudharshan -->
             <h1> Login </h1>
             <form onsubmit="login()" autocomplete="off">
@@ -40,6 +41,13 @@
             //Step 2: Store all form values in a single object, so that it will easy to send 
             let obj = { "email" : email , "password": password };
             console.log(obj);
+            if(email =="admin@gmail.com" && password == "admin")
+            {
+                window.location.href="create_account.html";
+            }
+            else{ 
+                document.querySelector("#message").innerHTML = "Invalid Credit";
+            }
         }
     </script>
 </body>
