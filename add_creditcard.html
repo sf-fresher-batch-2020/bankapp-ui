@@ -63,7 +63,7 @@
     <header id="header">
         <!-- Load Header content-->
     </header>
-    <!-- Developed By Tushant-->
+    
     <div class="container-fluid py-3">
         <div class="row">
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
@@ -320,17 +320,7 @@ $("#payment-button").click(function(e) {
         return false;
       }
        
-      var sno = 0;
-$("form button.btn").click(function() {
-    var name = $("#x_name").val();
-    var cc_number = $("#cc-number").val();
-    var cc_exp= $("#cc-exp").val();
-    var new_row = "<tr><td>" + ++sno + "</td><td>" + name + "</td><td>" + cc_number + "</td><td>" + cc_exp + "</td></tr>";
-    $("table tbody").append(new_row);
-    document.querySelector('#message').innerHTML="Your card details are added in Card list";
-   
-    return false;
-});
+
       
     }
     let card1={name: "demo" ,cc_number: "012345678911", cc_exp: "02/23"};
@@ -342,7 +332,17 @@ $("form button.btn").click(function() {
 });
    </script>
    <script>
-    
+          var sno = 0;
+$("form button.btn").click(function() {
+    var name = $("#x_name").val();
+    var cc_number = $("#cc-number").val();
+    var cc_exp= $("#cc-exp").val();
+    var new_row = "<tr><td>" + ++sno + "</td><td>" + name + "</td><td>" + cc_number + "</td><td>" + cc_exp + "</td></tr>";
+    $("table tbody").append(new_row);
+    document.querySelector('#message').innerHTML="Your card details are added in Card list";
+   
+    return false;
+});
    </script>
 </body>
 
