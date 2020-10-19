@@ -13,6 +13,44 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="assets/css/style.css"></link>
+        <style>
+      * {
+  box-sizing: border-box;
+}
+input[type=text], select {
+  width: 30%;
+  padding: 2px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+ button[type=submit] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 6px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+input[type=number] {
+  width: 30%;
+  padding: 2px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  background-color: #3CBC8D;
+  color: white;
+  border: 2px solid red;
+  border-radius: 4px;
+}
+        </style>
 </head>
 
 <body>
@@ -48,11 +86,22 @@
         $("#header").load("components/_header.html");
         function recharge(){
             event.preventDefault();
-            alert("Submit Button clicked");        
+            alert("Recharge Button clicked");        
             var MobileNo = document.getElementById("MobileNo").value;
             var Amount = document.getElementById("Amount").value;
-            console.log(document.getElementById("Provider").value);
-            console.log("MobileNo:" + MobileNo + ",Amount:" + Amount);
+            var Provider = document.getElementById("Provider").value;
+            
+            console.log("MobileNo:" + MobileNo + ",Amount:" + Amount + ",Provider:" + Provider);
+            let obj = { "Provider" : Provider , "MobileNo" : MobileNo , "Amount": Amount };
+            console.log(obj);
+            let result = sendDataToBackend(obj);
+            console.log("Result from Backend:" , result);
+        }
+        function sendDataToBackend(userDetails){
+            console.log("Sending Data to Backend", userDetails );            
+            // Dummy method, later we will integrate NODEJS REST API
+            let result = "success";            
+            return result;
         }
        
     </script>
