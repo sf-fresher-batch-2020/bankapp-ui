@@ -39,7 +39,7 @@ label {
   margin: 4px 2px;
   cursor: pointer;
 }
-input[type=number] {
+input[type=number] , input[type=tel] {
   width: 30%;
   padding: 2px 20px;
   margin: 8px 0;
@@ -72,10 +72,10 @@ input[type=number] {
                 </select><br>
         ​
                 <label for="MobileNo"><b>Mobile No</b></label>
-                <input type="number" id="MobileNo" placeholder="Enter Mobile No" name="MobileNo" required><br>
+                <input type="tel" id="MobileNo" placeholder="Enter Mobile No" name="MobileNo" pattern="[0-9]{10}" required><br>
                 
                 <label for="Amount"><b>Amount</b></label>
-                <input type="number" id="Amount" placeholder="Enter Amount" name="Amount" required><br>
+                <input type="number" id="Amount" placeholder="Enter Amount" name="Amount" min="1" max="10000" required><br>
                 
                 <button type="submit">Recharge</button>
             </form>
