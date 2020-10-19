@@ -22,10 +22,10 @@
     <main class="container-fluid">        
         <div id="page-content">
             <!-- Developed by Paras-->
-            <form>
-                <select name="select_user" id="user_type" required>
-                      <option>--Select the User--</option>
-                      <option value="user1">User 1</option>
+            <form onsubmit="getitems()">
+                <select name="select_user" id="user_type" >
+                      <option aria-readonly="true">--Select the User--</option>
+                      <option value="user1" >User 1</option>
                       <option value="user2">User 2</option>
                       <option value="user3">User 3</option>
                       <option value="user4">User 4</option>
@@ -34,9 +34,9 @@
                   </select>
                   <br><br>
                   <label>Choose The Type: </label>
-                  <label><input type="radio" name="activate" required> Activate the Account
-                  </label>
-                  <label><input type="radio" name="activate"> Deactivate the Account
+                  <label id = "A_D"><input type="radio" id="Activate" name="activate" value="Activate" required> Activate the Account
+                  
+                  <input type="radio" id="Deactivate" name="activate" value="Deactivate" > Deactivate the Account
                   </label>
                 </br></br>
                 <button type="submit">Submit</button>
@@ -44,7 +44,27 @@
         </div>
     </main>
     <script>
+        function getitems(){
         $("#header").load("components/_header.html");
+        event.preventDefault();
+        var user = document.getElementById("user_type").value;
+        let accountOption = document.getElementsByName("activate");
+        let account = null;
+        for(let option of accountOption){
+            if(option.checked){
+                account = option.value;
+                break;
+            }
+        }
+        
+
+        console.log( user,"wants to",account,"the account");
+
+        }
+
+
+        
+        
     </script>
 </body>
 
