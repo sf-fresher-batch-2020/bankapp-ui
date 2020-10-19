@@ -24,7 +24,7 @@
             <!-- Developed by Dinesh -->
             <h4>KYC</h4>
     
-    <form>
+    <form onsubmit="getFormValues()" autocomplete="off">
       <div class="form-group">
         <label class="text-primary">Select</label>
         <select  id="kyc_user">
@@ -42,6 +42,20 @@
     </main>
     <script>
         $("#header").load("components/_header.html");
+        function getFormValues()
+    {
+      var option=document.getElementById('kyc_user').value;
+      var file=document.querySelector('#myfile').value;
+      file=file.substr(12);
+      console.log("Selected Option ",option);
+      console.log('Uploaded File ', file);
+      var obj={"option" :option,"file":file};
+      sendDetailsToBackend(obj);
+    }
+    function  sendDetailsToBackend(userDetails)
+    {
+      console.log("User Details",userDetails);
+    }
     </script>
 </body>
 
