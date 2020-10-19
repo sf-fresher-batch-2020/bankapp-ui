@@ -22,12 +22,12 @@
     <main class="container-fluid">        
         <div id="page-content">
             <!-- Developed by Priya-->
-            <form>
+            <form onsubmit="login()">
                 <h1>Withdrawal</h1>
                 <p>Select Account Type</p>
-                <input type="radio" id="100" name="Personal" value="Personal Account" >
+                <input type="radio" id="100" name="Typ_Acc" value="Personal Account" required >
                 <label for="personal">Personal Accountant</label>
-                <input type="radio" id="101" name="Business" value="Business Account" >
+                <input type="radio" id="101" name="Typ_Acc" value="Business Account" required >
                 <label for="Business">Business Accountant</label><br><br>
                 <label for="Amount">Enter Amount</label><br>
                 <input type="number" id="Amount" name="Amount"><br><br>
