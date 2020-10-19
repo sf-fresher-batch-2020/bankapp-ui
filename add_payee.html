@@ -11,8 +11,8 @@
     <!-- jQuery and JS bundle w/ Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
-    </link>
+    <link rel="stylesheet" href="assets/css/style.css"></link>
+    <script type="text/javascript" src="js/payee_store.js"></script>
 </head>
 
 <body>
@@ -94,6 +94,8 @@
 
             console.log("Sending data to backend.....!", payee_data);
 
+            payees.push(payee_data);
+
             // storing data in arrays
             var data = [];
             data.push(payee_data);
@@ -112,6 +114,7 @@
 
             return "success";
         }
+        console.log(payees);
     </script>
 </body>
 
