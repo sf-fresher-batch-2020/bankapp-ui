@@ -3,15 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banking App</title>
-    <!-- CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"       crossorigin="anonymous">
-    <!-- jQuery and JS bundle w/ Popper.js -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
-        crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="assets/css/style.css"></link>
+    <title>Document</title>
 </head>
 <body>
     <header id="header">
@@ -21,110 +14,57 @@
         <div id="page-content">
             
 <center><h1 class="head">View Balance</h1></center></br></br>
-<table style="width:100%">
+<table style="width:100%" class="table table-bordered"></table>
   <thead>
   <tr class="header">
     <th>Account Name</th>
     <th>Account Number</th>
+    <th>Account Type</th>
     <th>Available Balance</th>
-    <th>Linked FD Balance</th>
-    <th>Total Available Balance</th>
-    <th>Status as of</th>
-    <th>Currency</th>
-  </tr>
-  
-        
+    </tr>
 
 </thead>
 <tbody id="tbl">
 </tbody>
 </table>
-        </div>
+</div>
     </main>
     <script>
-        
         $("#header").load("components/_header.html");
-        function loadbalancedata(){
+        
+        function accountDetails(){
             
-        
-          let balancedata = 
-          `<tr>
-         <th>Ankita</th>
-        <th>147852145672</th>
-        <th>Rs.30,789</th>
-        <th>Rs.1,20,000</th>
-        <th>Rs.1,50,789</th>
-        <th>20/10/2020</th>
-        <th> INR</th>
-    
-     </tr>
-     <th>Sam</th>
-        <th>147852145673</th>
-        <th>Rs.30,789</th>
-        <th>Rs.1,20,000</th>
-        <th>Rs.1,50,789</th>
-        <th>20/10/2020</th>
-        <th> INR</th>
-      <tr>
-        
-     </tr>
-      <tr>
-        <th>Ram</th>
-        <th>147852145674</th>
-        <th>Rs.30,789</th>
-        <th>Rs.1,20,000</th>
-        <th>Rs.1,50,789</th>
-        <th>20/10/2020</th>
-        <th> INR</th>
-     </tr>
-     <th><button>View Mini statement</button></th>
-     <th><button>View Detailed statement</button></th>
-     <th><button>Add Funds</button></th>
-     <th><button>Cheque Status Enquiry</button></th>
-     <tr>
-     <th>Download Details As: <select name="balance" id="bal">
-  <option value="pdf">pdf</option>
-  <option value="word">word</option>
-  <option value="img">imgs</option>
-</select>  `;
-  
-    document.querySelector("#tbl").innerHTML = balancedata;
-    
+            let accounts = [ { name: "Naresh", accountNo:123 , balance: 1000, accountType: "SAVINGS"} , 
+                          { name: "Dinesh", accountNo:124 , balance: 100000, accountType: "CURRENT"} ];
+            localStorage.setItem("ACCOUNTS", JSON.stringify(accounts) );
+         
+            let accountDetailsTemp = JSON.parse(localStorage.getItem("ACCOUNTS"));
+            let accountDetails = accountDetailsTemp ? accountDetailsTemp : [];
+            console.log(accountDetails);
+            let data = "";
+            for(let obj of accountDetails){
+              data += `<tr><td>${obj.name}</td><td>${obj.accountNo}</td></tr>`;
+            }
+            document.querySelector("#tbl").innerHTML = data;
         }
-        loadbalancedata();
+
+
+        let Acc_name = "Diksha";
+        localStorage.setItem("Account_NAME",Acc_name );
+        let Acc_num = "789456123";
+        localStorage.setItem("Account_NUM",Acc_num);
+        let Acc_type= "SAVINGS";
+        localStorage.setItem("Account_TYPE",Acc_type);
+        let Avail_Bal= "Rs.0";
+        localStorage.setItem("Available Balance",Avail_Bal);
+        let Acc_nameLS = localStorage.getItem("Account_NAME","Account_NUM","Account_TYPE","Available Balance");
+        console.log("LS Acc_name  :" + Acc_nameLS + Acc_numLS + Acc_typeLS + Avail_BalLS );
+        
+    
+
+      
+
+       
     </script>
-          
-     
-     <style>
-        table {
-         font-family: arial, sans-serif;
-         border-collapse: collapse;
-         width: 100%;
-       }
-       td, th {
-         border: 1px solid #dddddd;
-         text-align: left;
-         padding: 8px;
-       }
-       tr:nth-child(even) {
-         background-color: #dddddd;
-       }
-       body {
-         background-color:whitesmoke;
-       }
-       .head{
-           color:black;
-       }
-       .header{
-           color: blue;
-       }
-       .top{
-           min-height: 50px;
-           min-width:200px;
-           margin: 10px;
-           background-color: gray;
-           color: red;
-       }
-         </style>
 </body>
 </html>
