@@ -28,7 +28,7 @@
         <div id="page-content">
             <!-- Developed By Kiran Maddu-->
             <div class="col-sm-4">
-                <form style="padding: 20px 0px 0px 20px;" onsubmit="addPayee()">
+                <form style="padding: 20px 0px 0px 20px;" onsubmit="addPayee()" autocomplete="off">
                     <div class="form-group">
                         <label for="payee_name">Short Name * </label>
                         <input class="form-control" type="text" name="payee_name" id="payee_name" required placeholder="Harry" autofocus>
@@ -52,7 +52,7 @@
                         <input class="form-control" type="text" name="mobile" id="mobile" placeholder="1234567890" required>
                         <small class="form-text text-muted">Payee registration alert will be sent to this number!</small>
                     </div>
-                    <button class="btn btn-secondary" type="reset" onclick="location.href = '/index.html';">Back</button>
+                    <button class="btn btn-secondary" type="reset">Clear</button>
                     <button class="btn btn-info" type="submit">Add Payee</button>
                 </form>
             </div>
