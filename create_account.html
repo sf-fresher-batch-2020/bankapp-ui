@@ -58,7 +58,7 @@
     </main>
     <script>
         $("#header").load("components/_header.html");
-        function createaccount()
+       function createaccount()
          {
             event.preventDefault();
             alert("Submit Button clicked");
@@ -73,12 +73,12 @@
             console.log("Results from Backend:" , results);
             
             var users =[];
-            var usersTemp = JSON.parse(localStorage.getItem("USERS"));
+            var usersTemp = JSON.parse(localStorage.getItem("ACCOUNTS"));
             var users = usersTemp ? usersTemp : [];
             users.push(obj);
            
-            localStorage.setItem("USERS", JSON.stringify(users ) );
-            localStorage.getItem("USERS");
+            localStorage.setItem("ACCOUNTS", JSON.stringify(users ) );
+            localStorage.getItem("ACCOUNTS");
         }
         function sendDatatoBackend(accountdetails)
         {
@@ -86,6 +86,16 @@
             let results = "successfuly account created";
             return results;
         }
+        function loadAccountTypes(){
+            var accountTypesTmp = JSON.parse(localStorage.getItem("ACCOUNT_TYPES"));
+            var accountTypes = accountTypesTmp ? accountTypesTmp : [];
+            let data = "";
+            for(let obj of accountTypes){
+                data+=`<option>${obj.name} </option>`;
+            }
+            document.querySelector("#accountTypes").innerHTML = data;
+        }
+        loadAccountTypes();
     </script>
 </body>
 
