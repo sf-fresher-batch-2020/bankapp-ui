@@ -13,6 +13,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="assets/css/style.css"></link>
+        <style>
+            #table{
+                margin-left: auto; 
+                margin-right: auto;
+            }
+            label{
+                font-weight: bold;
+            }
+           
+        </style>
 </head>
 
 <body>
@@ -22,27 +32,47 @@
     <main class="container-fluid">        
         <div id="page-content">
             <!-- Developed by Pasam Pavithra-->
-            <h1>Create Account</h1>
-            <form action="" method="post" onsubmit="createaccount()">
-                
-                <label>Select :</label>
-                <select name="select_type" id="select_type" required>
+        </div>
+            <div class="card text-center">
+                <div class="card-header">
+                    <h1 style="color :rgb(11, 108, 138);">Create Account</h1><br/><br/>
+                </div>
+                <div class="card-body">
+                <form action="" method="post" onsubmit="createaccount()">
+                <table id="table">
+                <tr>
+                <td><label>Select UserId :</label></td>
+                <td><select name="select_type" id="select_type" required>
                     <option value="">--PLEASE SELECT --</option>
                     <option value="user">User</option>
                     <option value="admin">Admin</option>
                 </select>
                 <br/>
                 <br/>
-                <label> Account Type : </label>
-                <select name="account_type" id="account_type" required>
+                </td>
+                </tr>
+                <tr>
+                <td><label> Account Type : </label></td>
+                <td><select name="account_type" id="account_type" required>
                     <option value="">--PLEASE SELECT --</option>
-                    <option value="savings">Savings</option>
-                    <option value="business">Business</option>
+                    <option value="Insta savings">Insta Savings Account</option>
+                    <option value="savings">SavingsAccount</option>
+                    <option value="previlige savings">Previlige Savings Account</option>
+                    <option value="women savings">Women Savings Account</option>
+                    <option value="family savings">Family Savings Account</option>
+                    <option value="special savings">Special Savings Account</option>
+                    <option value="fixed deposit">Fixed Deposit</option>
+                    <option value="reccuring deposit">Reccuring Deposit</option>
+                    <option value="Reinvestsavings">Reinvestment Savings </option>
+
                 </select>
                 <br/>
                 <br/>
-                <label> Branch : </label>
-                <select name="branch" id="branch" required>
+                </td>
+                </tr>
+                <tr>
+                <td><label> Branch : </label></td>
+                <td><select name="branch" id="branch" required>
                     <option value="">--PLEASE SELECT --</option>
                     <option value="MAS">Chennai</option>
                     <option value="CAL">Calicut</option>
@@ -52,16 +82,23 @@
                 </select>
                 <br/>
                 <br/>
-                <button type="submit">Create Account</button>
-            </form>
-        </div>
+                </td>
+                </tr>
+                </table>
+                <button type="submit" style="background-color: rgb(158, 215, 238); color: black; font-weight: normal;">Create Account</button>
+                <br/>
+                <br/>
+                </form>
+                </div>
+                <div class=card-footer id="footer"></div>
+            </div>
     </main>
     <script>
         $("#header").load("components/_header.html");
-         function createaccount()
+       function createaccount()
          {
             event.preventDefault();
-            alert("Submit Button clicked");
+            alert("click OK to Create Account");
             var userid=document.getElementById("select_type").value;
             var account=document.getElementById("account_type").value;
             var branch = document.getElementById("branch").value;
@@ -76,16 +113,39 @@
             var usersTemp = JSON.parse(localStorage.getItem("ACCOUNTS"));
             var users = usersTemp ? usersTemp : [];
             users.push(obj);
-           
             localStorage.setItem("ACCOUNTS", JSON.stringify(users ) );
             localStorage.getItem("ACCOUNTS");
+           
+        
+        function loadData(){
+          var tData = `
+          <div class="alert alert-success">
+            <strong>Account Created Successfully!</strong></div>
+          <tr> 
+                <td><p>Click here to activate an account</p></td>
+          </tr>
+          <tr>
+            <td>  <a href="kyc.html">Activate an account</a></td>
+          </tr>`;
+          document.querySelector("#footer").innerHTML = tData;
         }
+        loadData();
+         }
+        function loadAccountTypes(){
+            event.preventDefault();
+            var account_type=document.getElementById("account_type").value;
+            console.log(account_type);
+            let obj={"account_type":account_type};
+            console.log(obj);
+            localStorage.setItem("ACCOUNT_TYPE", JSON.stringify(obj));
+         }
         function sendDatatoBackend(accountdetails)
         {
             console.log("sending Data to backend, accountdetails");
             let results = "successfuly account created";
             return results;
         }
+        
     </script>
 </body>
 
