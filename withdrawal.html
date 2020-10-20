@@ -53,16 +53,20 @@
            var Amount = document.querySelector("#Amount").value;
            let obj ={"ACC_TYP": val,"Amount": Amount};
            console.log(obj);
-           //Local storage
-             var Accounts=[];
-             var detail={ ACC_TYP:val,Amount:Amount};
-             Accounts.push(detail);
-             localStorage.setItem("Account_Details",JSON.stringify(Accounts));
-             var transaction=[];
-            var object={ accountid:13244,amount:Amount,transactiontype:"Debit",transactionDate:new Date().toJSON(),Status:"Success",billid:2637437};            
-            transaction.push(object);
-            localStorage.setItem("Transactions",JSON.stringify(transaction));
-            
+           //Local storage...Account Details
+              var detail={ ACC_TYP:val,Amount:Amount};
+              let accountDetailsTemp = JSON.parse(localStorage.getItem("Account_Details"));
+              let accountDetails = accountDetailsTemp ? accountDetailsTemp : [];
+              accountDetails.push(detail);
+              localStorage.setItem("Account_Details",JSON.stringify(accountDetails));
+             
+            //transaction Details
+             var transactionsTemp = JSON.parse(localStorage.getItem("Transactions"));
+             var transaction = transactionsTemp ? transactionsTemp : [];
+             var object={ accountid:13244,amount:Amount,transactiontype:"Debit",transactionDate:new Date().toJSON(),Status:"Success",billid:2637437};            
+             transaction.push(object);
+             localStorage.setItem("Transactions",JSON.stringify(transaction));
+
             
         }
         $("#header").load("components/_header.html");
