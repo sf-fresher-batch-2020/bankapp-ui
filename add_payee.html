@@ -12,7 +12,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css"></link>
-    <script type="text/javascript" src="js/payee_store.js"></script>
 </head>
 
 <body>
@@ -69,23 +68,36 @@
             event.preventDefault();
 
             // getting form data
-
             let name = document.querySelector('#payee_name').value;
             let acc_no = document.querySelector('#account_number').value;
             let holder_name = document.querySelector('#holder_name').value;
             let ifsc = document.querySelector('#ifsc').value;
+            let mobile = document.querySelector('#mobile').value;
 
             var payee = {
                 'name': name,
                 'acc_no': acc_no,
                 'holder_name': holder_name,
-                'ifsc': ifsc
+                'ifsc': ifsc,
+                'mobile': mobile
             };
 
-            // calling a function to send data to db
+            // adding payee to payees array in local storage
 
-            let result = storePayeeInDB(payee);
-            console.log(result);
+            if (localStorage.getItem("PAYEES")) {
+                var addedPayees = JSON.parse(localStorage.getItem("PAYEES"));
+            } else {
+                var addedPayees = [];
+            }
+
+            addedPayees.push(payee);
+
+            localStorage.setItem("PAYEES", JSON.stringify(addedPayees));
+
+
+            // calling a function to send data to db
+            // let result = storePayeeInDB(payee);
+            // console.log(result);
 
         }
 
@@ -114,7 +126,6 @@
 
             return "success";
         }
-        console.log(payees);
     </script>
 </body>
 
