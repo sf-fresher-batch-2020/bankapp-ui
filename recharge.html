@@ -64,7 +64,7 @@ input[type=number] , input[type=tel] , select {
             <form action="backend" method="post" onsubmit="recharge()">
                 
                 <label for="Provider"><b>Provider</b></label>
-                <select name="Provider" id="Provider" name="Provider">
+                <select name="Provider" id="Provider" name="Provider" required>
                     <option value="Bsnl">Bsnl</option>
                     <option value="Jio">Jio</option>
                     <option value="Airtel">Airtel</option>
@@ -102,6 +102,10 @@ input[type=number] , input[type=tel] , select {
             // Dummy method, later we will integrate NODEJS REST API
             let result = "success";            
             return result;
+             var Obj= {Provider:"Bsnl" , MobileNo: "9444908849" , Amount: "5467" };
+        let payments = [];
+        payments.push(Obj);
+       localStorage.setItem("PAYMENTS",JSON.stringify(Obj));
         }
        
     </script>
