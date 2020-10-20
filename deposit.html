@@ -55,14 +55,14 @@
                 'amount': amount,
             };
 if (localStorage.getItem("TRANSACTIONS") == null) {
-                var alltrasactions = [];
+                var alltransactions = [];
             } else {
-                var alltrasactions = JSON.parse(localStorage.getItem("TRASACTIONS"));
+                var alltransactions = JSON.parse(localStorage.getItem("TRANSACTIONS"));
             }
 
-            alltrasactions.push(myObj);
+            alltransactions.push(myObj);
 
-            localStorage.setItem("TRASACTIONS", JSON.stringify(alltransactions))
+            localStorage.setItem("TRANSACTIONS", JSON.stringify(alltransactions))
             let result = depositAmount(myObj);
             console.log(result);
 
