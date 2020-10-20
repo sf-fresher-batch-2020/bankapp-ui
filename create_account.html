@@ -58,19 +58,30 @@
     </main>
     <script>
         $("#header").load("components/_header.html");
-         function createaccount(){
+         function createaccount()
+         {
             event.preventDefault();
             alert("Submit Button clicked");
-            var select=document.getElementById("select_type").value;
+            var userid=document.getElementById("select_type").value;
             var account=document.getElementById("account_type").value;
             var branch = document.getElementById("branch").value;
-            console.log("type:" + select + ",accounttype:" + account + ",branch:" + branch);
-            let obj = {"type" : select, "accounttype" : account, "branch" : branch};
+            var account_no=Math.floor(Math.random() * 5000);
+            console.log("user:" + userid + ",accounttype:" + account + ",branch:" + branch + ",account no:" + account_no);
+            let obj = {"user" : userid, "accounttype" : account, "branch" : branch , "account no": account_no };
             console.log(obj);
             let results = sendDatatoBackend(obj);
             console.log("Results from Backend:" , results);
+            
+            var users =[];
+            var usersTemp = JSON.parse(localStorage.getItem("ACCOUNTS"));
+            var users = usersTemp ? usersTemp : [];
+            users.push(obj);
+           
+            localStorage.setItem("ACCOUNTS", JSON.stringify(users ) );
+            localStorage.getItem("ACCOUNTS");
         }
-        function sendDatatoBackend(accountdetails){
+        function sendDatatoBackend(accountdetails)
+        {
             console.log("sending Data to backend, accountdetails");
             let results = "successfuly account created";
             return results;
