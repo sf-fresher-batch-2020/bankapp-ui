@@ -86,16 +86,7 @@
             let results = "successfuly account created";
             return results;
         }
-        function loadAccountTypes(){
-            var accountTypesTmp = JSON.parse(localStorage.getItem("ACCOUNT_TYPES"));
-            var accountTypes = accountTypesTmp ? accountTypesTmp : [];
-            let data = "";
-            for(let obj of accountTypes){
-                data+=`<option>${obj.name} </option>`;
-            }
-            document.querySelector("#accountTypes").innerHTML = data;
-        }
-        loadAccountTypes();
+        
     </script>
 </body>
 
