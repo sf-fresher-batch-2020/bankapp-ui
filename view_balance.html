@@ -14,7 +14,7 @@
         <div id="page-content">
             
 <center><h1 class="head">View Balance</h1></center></br></br>
-<table style="width:100%" class="table table-bordered"></table>
+<table style="width:100%" class="table table-bordered">
   <thead>
   <tr class="header">
     <th>Account Name</th>
@@ -30,7 +30,9 @@
 </div>
     </main>
     <script>
-        
+        $("#header").load("components/_header.html");
+        </script>
+<script>
         function accountDetails(){
             
             let accounts = [ { name: "Naresh", accountNo:123 , balance: 1000, accountType: "SAVINGS"} , 
@@ -42,28 +44,13 @@
             console.log(accountDetails);
             let data = "";
             for(let obj of accountDetails){
-              data += `<tr><td>${obj.name}</td><td>${obj.accountNo}</td></tr>`;
+              data += `<tr><td>${obj.name}</td><td>${obj.accountNo}</td><td>${obj.accountType}</td><td>${obj.balance}</td></tr>`;
             }
             document.querySelector("#tbl").innerHTML = data;
         }
-
-
-        let Acc_name = "Diksha";
-        localStorage.setItem("Account_NAME",Acc_name );
-        let Acc_num = "789456123";
-        localStorage.setItem("Account_NUM",Acc_num);
-        let Acc_type= "SAVINGS";
-        localStorage.setItem("Account_TYPE",Acc_type);
-        let Avail_Bal= "Rs.0";
-        localStorage.setItem("Available Balance",Avail_Bal);
-        let Acc_nameLS = localStorage.getItem("Account_NAME","Account_NUM","Account_TYPE","Available Balance");
-        console.log("LS Acc_name  :" + Acc_nameLS + Acc_numLS + Acc_typeLS + Avail_BalLS );
-        
-    
-
-      
-
-       
+        accountDetails();
     </script>
+    
+  
 </body>
 </html>
