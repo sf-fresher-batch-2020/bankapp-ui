@@ -43,14 +43,22 @@
     </main>
     <script>
         $("#header").load("components/_header.html");
-        event.preventDefault();
-        let obj=JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
-         var name=obj.email;
-     document.querySelector("#username").innerHTML="Welcome "+ name;
-     function getFormValues()
+      var name;
+    function displayName()
     {
+  //  let obj=JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+     //name=obj.email;
+    name="d@gmail.com";
+    document.querySelector("#username").innerHTML="Welcome "+ name;
+    }
+    displayName();
+    function getFormValues()
+    {
+      //document.querySelector("#username").innerHTML="Welcome "+ name;
+      event.preventDefault();
       var option=document.getElementById('kyc_user').value;
       var file=document.querySelector('#myfile').value;
+      
       file=file.substr(12);
       console.log("Selected Option ",option);
       console.log('Uploaded File ', file);
@@ -59,8 +67,9 @@
     }
     function  sendDetailsToBackend(userDetails)
     {
+
       console.log("User Details",userDetails);
-        var kyclist=[];
+      var kyclist=[];
       kyclist.push(userDetails);
       localStorage.setItem("KYC_LIST",JSON.stringify(kyclist));
     }
