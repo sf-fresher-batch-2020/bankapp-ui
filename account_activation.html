@@ -22,52 +22,62 @@
     <main class="container-fluid">        
         <div id="page-content">
             <!-- Developed by Paras-->
-            <form onsubmit="getitems()">
-               <br/> <select name="select_user" id="user_type" required>
-                      <option value="">--Select the User--</option>
-                      <option value="user1" >User 1</option>
-                      <option value="user2">User 2</option>
-                      <option value="user3">User 3</option>
-                      <option value="user4">User 4</option>
-                      <option value="user5">User 5</option>
-                      
-                  </select>
-                  <br><br>
-                  <label>Choose The Type: </label>
-                  <label id = "A_D"><input type="radio" id="Activate" name="activate" value="Activate" required> Activate the Account
-                  
-                  <input type="radio" id="Deactivate" name="activate" value="Deactivate" > Deactivate the Account
-                  </label>
-                </br></br>
-                <button type="submit">Submit</button>
-                </form>
-        </div>
+            </div>
+        <div class="card text-center">
+            <div class="card-header">
+              
+            </div>
+            <div class="card-body">
+                <form onsubmit="getitems()">
+              <h5 class="card-title" id="username"></h5>
+              <p class="card-text">Do You Want To:</p>
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-success">
+                  <input type="radio" name="Activate" id="option1" value="Deactivate" required> Activate The Account
+                </label>
+                <br>
+                <label class="btn btn-danger">
+                  <input type="radio" name="Activate" value="Activate" required> Deactivate the Account
+                </label>
+                
+              </div>
+              <br/>
+              <button type="submit" class="btn btn-outline-primary" style="margin-top: 10px;">Submit</button>
+            </div>
+          </div>
+          </form>
     </main>
     <script>
          $("#header").load("components/_header.html");
 
+         var obj = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+        
+        document.getElementById("username").innerHTML= "Welcome" + " " + obj.name + " " ;
+
         function getitems(){
        
-        event.preventDefault();
-        var user = document.getElementById("user_type").value;
-        let accountOption = document.getElementsByName("activate");
-        let account = null;
-        for(let option of accountOption){
-            if(option.checked){
-                account = option.value;
-                break;
-            }
-        }
-        
+       event.preventDefault();
+       var user = document.querySelector("#username");
+       let accountOption = document.getElementsByName("activate");
+       let account = null;
+       for(let option of accountOption){
+           if(option.checked){
+               account = option.value;
+               break;
+           }
+       }
+       
 
-        console.log( user,"wants to",account,"the account");
+       console.log( user,"wants to",account,"the account");
 
-        }
+       }
+       
 
 
-        
+       
         
     </script>
 </body>
 
 </html>
+
