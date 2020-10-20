@@ -58,6 +58,23 @@
     </main>
     <script>
         $("#header").load("components/_header.html");
+         function createaccount(){
+            event.preventDefault();
+            alert("Submit Button clicked");
+            var select=document.getElementById("select_type").value;
+            var account=document.getElementById("account_type").value;
+            var branch = document.getElementById("branch").value;
+            console.log("type:" + select + ",accounttype:" + account + ",branch:" + branch);
+            let obj = {"type" : select, "accounttype" : account, "branch" : branch};
+            console.log(obj);
+            let results = sendDatatoBackend(obj);
+            console.log("Results from Backend:" , results);
+        }
+        function sendDatatoBackend(userdetails){
+            console.log("sending Data to backend, userdetails");
+            let results = "sucess";
+            return results;
+        }
     </script>
 </body>
 
