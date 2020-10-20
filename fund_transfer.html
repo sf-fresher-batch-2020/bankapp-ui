@@ -61,6 +61,8 @@
         }
         var transfer = [];
             var obj = {amount : 10,comment : "transaction",payee : "abi-002"};
+            var usersTemp = JSON.parse(localStorage.getItem("USERS"));
+            var users = usersTemp ? usersTemp : [];
             transfer.push(obj);
             localStorage.setItem("TRANSFER",JSON.stringify(transfer));
             var transfer=JSON.parse(localStorage.getItem("TRANSFER"));
