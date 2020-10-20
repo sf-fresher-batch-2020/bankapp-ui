@@ -74,9 +74,9 @@
             let ifsc = document.querySelector('#ifsc').value;
             let mobile = document.querySelector('#mobile').value;
 
+            // getting logged in user data
             var user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
-
-            let created_by = user.email;
+            let created_by = user.email; //getting email and setting as creator of payee
 
             var payee = {
                 'name': name,
@@ -87,8 +87,7 @@
                 'created_by': created_by
             };
 
-            // adding payee to payees array in local storage
-
+            // adding payee to payees array from local storage or creating not exists
             if (localStorage.getItem("PAYEES")) {
                 var addedPayees = JSON.parse(localStorage.getItem("PAYEES"));
             } else {
