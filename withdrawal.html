@@ -58,8 +58,8 @@
              Accounts.push(detail);
              localStorage.setItem("Account_Details",JSON.stringify(Accounts));
              var transaction=[];
-            var obj={ accountid:13244,amount:Amount,transactiontype:"Debit",transactionDate:new Date().toJSON(),Status:"Success",billid:2637437};            
-            transaction.push(obj);
+            var object={ accountid:13244,amount:Amount,transactiontype:"Debit",transactionDate:new Date().toJSON(),Status:"Success",billid:2637437};            
+            transaction.push(object);
             localStorage.setItem("Transactions",JSON.stringify(transaction));
             
             
