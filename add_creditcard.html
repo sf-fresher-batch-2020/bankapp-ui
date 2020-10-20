@@ -130,20 +130,7 @@
         </div>
     </div>
   
-    <div class="table-div">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th> S.no </th>
-                    <th> Name </th>
-                    <th> Card Number </th>
-                    <th> Exp_date</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        </div>
+   
     <!-- Footer -->
 
 <footer class="page-footer font-small  bg-dark">
@@ -292,6 +279,8 @@ $("#payment-button").click(function(e) {
     var date = $('#cc-exp').val().split('/');
     var regMonth = /^01|02|03|04|05|06|07|08|09|10|11|12$/;
     var regYear = /^20|21|22|23|24|25|26|27|28|29|30|31$/;
+    var name = $("#x_name").val();
+    var expiryDate = $('#cc-exp').val();
     
     if (form[0].checkValidity() === false) {
       e.preventDefault();
@@ -323,27 +312,17 @@ $("#payment-button").click(function(e) {
 
       
     }
-    let card1={name: "demo" ,cc_number: "012345678911", cc_exp: "02/23"};
-      let cards =[];
+    let card1={name: name ,cc_number: CardNo, cc_exp: expiryDate};
+    let cardsTemp = JSON.parse(localStorage.getItem("CARDS"));
+     let cards  = cardsTemp ? cardsTemp :[];
       cards.push(card1);
       localStorage.setItem("CARDS",JSON.stringify(cards));
-
+      document.querySelector('#message').innerHTML="Your card details are added in Card list";
     form.addClass('was-validated');
+    
 });
    </script>
-   <script>
-          var sno = 0;
-$("form button.btn").click(function() {
-    var name = $("#x_name").val();
-    var cc_number = $("#cc-number").val();
-    var cc_exp= $("#cc-exp").val();
-    var new_row = "<tr><td>" + ++sno + "</td><td>" + name + "</td><td>" + cc_number + "</td><td>" + cc_exp + "</td></tr>";
-    $("table tbody").append(new_row);
-    document.querySelector('#message').innerHTML="Your card details are added in Card list";
-   
-    return false;
-});
-   </script>
+ 
 </body>
 
 </html>
