@@ -23,7 +23,7 @@
         <div id="page-content">
             <!-- Developed by Pasam Pavithra-->
             <h1>Create Account</h1>
-            <form action="" method="post">
+            <form action="" method="post" onsubmit="createaccount()">
                 
                 <label>Select :</label>
                 <select name="select_type" id="select_type" required>
@@ -53,7 +53,7 @@
                 <br/>
                 <br/>
                 <button type="submit">Create Account</button>
-        
+            </form>
         </div>
     </main>
     <script>
@@ -70,9 +70,9 @@
             let results = sendDatatoBackend(obj);
             console.log("Results from Backend:" , results);
         }
-        function sendDatatoBackend(userdetails){
-            console.log("sending Data to backend, userdetails");
-            let results = "sucess";
+        function sendDatatoBackend(accountdetails){
+            console.log("sending Data to backend, accountdetails");
+            let results = "successfuly account created";
             return results;
         }
     </script>
