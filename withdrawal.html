@@ -54,6 +54,7 @@
            let obj ={"ACC_TYP": val,"Amount": Amount};
            console.log(obj);
            //Local storage
+             var Accounts=[];
              var detail={ ACC_TYP:val,Amount:Amount};
              Accounts.push(detail);
              localStorage.setItem("Account_Details",JSON.stringify(Accounts));
