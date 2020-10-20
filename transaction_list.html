@@ -31,24 +31,25 @@
                         <th> Amount</th>
                         <th>Comments</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
                     <tr>
                         <td>1.</td>
-                        <td>234567</td>
-                        <td>2020-10-19</td>
-                        <td> Dedit</td>
-                        <td> 10000</td>
-                        <td>Transaction 1</td>
+                        <td>234567 </td>
+                        <td>2020-10-19 </td>
+                        <td> Dedit </td>
+                        <td>10000</td>
+                        <td> Transaction 1 </td>
                     </tr>
-                        <tr>
+                         <tr>
                             <td>2.</td>
                             <td>238459</td>
                             <td>2020-10-20</td>
-                            <td>Credit</td>
+                            <td>credit</td>
                             <td>11000</td>
                             <td>Transaction 2</td>
                         </tr>
+                    </thead>
+                    <tbody>
                    </tbody>
             </table>
             <button type="submit">SUBMIT</button>
@@ -56,6 +57,15 @@
     </main>
     <script>
         $("#header").load("components/_header.html");
+            var transactions = [];
+            var obj = { accountid:12,amount :10,transactionType: "CREDIT",transactionDate:new Date().toJSON(),comment:"Transaction1"}
+            transactions.push(obj);
+            localStorage.setItem("TRANACTIONS",JSON.stringify(transactions));
+            var transactionsTemp=JSON.parse(localStorage.getItem("TRANSACTIONS"));
+            var transactionList =  transactionsTemp ?transactionsTemp : [];
+            for( let obj in transactionList ){ 
+                TransactionList
+            }
     </script>
 </body>
     </html>
