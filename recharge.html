@@ -84,7 +84,8 @@ input[type=number] , input[type=tel] , select {
     </main>
     <script>
         $("#header").load("components/_header.html");
-        function recharge(){
+        
+          function recharge(){
             event.preventDefault();
             alert("Recharge Button clicked");        
             var MobileNo = document.getElementById("MobileNo").value;
@@ -97,15 +98,18 @@ input[type=number] , input[type=tel] , select {
             let result = sendDataToBackend(obj);
             console.log("Result from Backend:" , result);
         }
-        function sendDataToBackend(userDetails){
+      
+function sendDataToBackend(userDetails){
             console.log("Sending Data to Backend", userDetails );            
             // Dummy method, later we will integrate NODEJS REST API
             let result = "success";            
+        //var payments = [];
+        var paymentsTemp = JSON.parse(localStorage.getItem("payments"));
+        var payments = paymentsTemp ? paymentsTemp : [];
+        payments.push(userDetails);
+       localStorage.setItem("PAYMENTS",JSON.stringify(payments));
+       var payments=JSON.parse(localStorage.getItem("PAYMENTS"));
             return result;
-             var Obj= {Provider:"Bsnl" , MobileNo: "9444908849" , Amount: "5467" };
-        let payments = [];
-        payments.push(Obj);
-       localStorage.setItem("PAYMENTS",JSON.stringify(Obj));
         }
        
     </script>
