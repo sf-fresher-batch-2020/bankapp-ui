@@ -24,7 +24,7 @@
             <!-- Developed by Dinesh -->
             <h4>KYC</h4>
         </div>
-        <div id="username></div>
+        <div id="username"></div>
     <form onsubmit="getFormValues()" autocomplete="off">
       <div class="form-group">
         <label class="text-primary">Select</label>
@@ -46,9 +46,9 @@
       var name;
     function displayName()
     {
-  //  let obj=JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
-     //name=obj.email;
-    name="d@gmail.com";
+       let obj=JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+     name=obj.email;
+   // name="d@gmail.com";
     document.querySelector("#username").innerHTML="Welcome "+ name;
     }
     displayName();
