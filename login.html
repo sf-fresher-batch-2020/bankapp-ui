@@ -41,11 +41,27 @@
             //Step 2: Store all form values in a single object, so that it will easy to send 
             let obj = { "email" : email , "password": password };
             console.log(obj);
-            if(email =="abc@gmail.com" && password == "abc")
+            var RegUsersTemp = JSON.parse(localStorage.getItem("USERS"));
+           //RegUsersTemp = null
+           var RegUsers= RegUsersTemp ? RegUsersTemp: [];
+            // RegUsers= []
+            console.log(RegUsers);
+
+            let user = false;
+            for(let i of RegUsers)
+            {
+                if( i.email == email  && i.password == password)
+                {
+                    user=true;
+                    localStorage.setItem("LOGGED_IN_USER",JSON.stringify(i));
+                }
+            }
+            if(user)
             {
                 window.location.href="create_account.html";
             }
-            else{ 
+            else
+            {
                 document.querySelector("#message").innerHTML = "invalid";
             }
         }
