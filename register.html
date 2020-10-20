@@ -65,16 +65,14 @@
                 break;
             }
         }
-        
-        
-       var result={"name":Name, "email":email, "password":password, "dob" :DOB,"gender":gender }
-      // console.log(result);
-       alert("registered successfully");
-      // window.location.href="login.html";
-       var userObj= {name:"sai", email: "sai@gmail.com", password: "123", dob: "02.04.2010", gender: "f" };
+            
+     var userObj={"name":Name, "email":email, "password":password, "dob" :DOB,"gender":gender };
+      //console.log(result);
        var users =[];
        users.push(userObj);
-       localStorage.setItem("USERS",JSON.stringify(users));         
+       localStorage.setItem("USERS",JSON.stringify(users));
+       alert("registered successfully");
+       window.location.href="login.html";
        }
     </script>
 </body>
