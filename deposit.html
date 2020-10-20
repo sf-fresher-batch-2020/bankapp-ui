@@ -49,13 +49,20 @@
             let name = document.querySelector('#user').value;
             let acc_type = document.querySelector('#acc_type').value;
             let amount = document.querySelector('#amount').value;
-
             var myObj = {
                 'user_name': name,
                 'acc_type': acc_type,
                 'amount': amount,
             };
+if (localStorage.getItem("TRANSACTIONS") == null) {
+                var alltrasactions = [];
+            } else {
+                var alltrasactions = JSON.parse(localStorage.getItem("TRASACTIONS"));
+            }
 
+            alltrasactions.push(myObj);
+
+            localStorage.setItem("TRASACTIONS", JSON.stringify(alltransactions))
             let result = depositAmount(myObj);
             console.log(result);
 
