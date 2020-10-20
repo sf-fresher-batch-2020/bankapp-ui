@@ -74,12 +74,17 @@
             let ifsc = document.querySelector('#ifsc').value;
             let mobile = document.querySelector('#mobile').value;
 
+            var user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+
+            let created_by = user.email;
+
             var payee = {
                 'name': name,
                 'acc_no': acc_no,
                 'holder_name': holder_name,
                 'ifsc': ifsc,
-                'mobile': mobile
+                'mobile': mobile,
+                'created_by': created_by
             };
 
             // adding payee to payees array in local storage
