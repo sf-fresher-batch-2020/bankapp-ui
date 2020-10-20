@@ -68,7 +68,9 @@
             
      var userObj={"name":Name, "email":email, "password":password, "dob" :DOB,"gender":gender };
       //console.log(result);
-       var users =[];
+      // var users =[];
+       var usersTemp = JSON.parse(localStorage.getItem("USERS"));
+       var users= usersTemp ? usersTemp:[];
        users.push(userObj);
        localStorage.setItem("USERS",JSON.stringify(users));
        alert("registered successfully");
