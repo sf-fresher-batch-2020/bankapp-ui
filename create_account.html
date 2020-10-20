@@ -26,10 +26,18 @@
             <form action="" method="post" onsubmit="createaccount()">
                 
                 <label>Select :</label>
-                <select name="select_type" id="select_type" required>
+                <select name="account_type" id="account_type" required>
                     <option value="">--PLEASE SELECT --</option>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
+                    <option value="Insta savings">Insta Savings Account</option>
+                    <option value="savings">SavingsAccount</option>
+                    <option value="previlige savings">Previlige Savings Account</option>
+                    <option value="women savings">Women Savings Account</option>
+                    <option value="family savings">Family Savings Account</option>
+                    <option value="special savings">Special Savings Account</option>
+                    <option value="fixed deposit">Fixed Deposit</option>
+                    <option value="reccuring deposit">Reccuring Deposit</option>
+                    <option value="Reinvestsavings">Reinvestment Savings </option>
+
                 </select>
                 <br/>
                 <br/>
@@ -80,6 +88,14 @@
             localStorage.setItem("ACCOUNTS", JSON.stringify(users ) );
             localStorage.getItem("ACCOUNTS");
         }
+        function loadAccountTypes(){
+            event.preventDefault();
+            var account_type=document.getElementById("account_type").value;
+            console.log(account_type);
+            let obj={"account_type":account_type};
+            console.log(obj);
+            localStorage.setItem("ACCOUNT_TYPE", JSON.stringify(obj));
+         }
         function sendDatatoBackend(accountdetails)
         {
             console.log("sending Data to backend, accountdetails");
