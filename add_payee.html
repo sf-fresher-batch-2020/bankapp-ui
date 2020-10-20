@@ -11,8 +11,8 @@
     <!-- jQuery and JS bundle w/ Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
-    </link>
+    <link rel="stylesheet" href="assets/css/style.css"></link>
+    <script type="text/javascript" src="js/payee_store.js"></script>
 </head>
 
 <body>
@@ -68,6 +68,8 @@
 
             event.preventDefault();
 
+            // getting form data
+
             let name = document.querySelector('#payee_name').value;
             let acc_no = document.querySelector('#account_number').value;
             let holder_name = document.querySelector('#holder_name').value;
@@ -80,13 +82,21 @@
                 'ifsc': ifsc
             };
 
+            // calling a function to send data to db
+
             let result = storePayeeInDB(payee);
             console.log(result);
 
         }
 
+        // function to store data in backend
         function storePayeeInDB(payee_data) {
+
             console.log("Sending data to backend.....!", payee_data);
+
+            payees.push(payee_data);
+
+            // storing data in arrays
             var data = [];
             data.push(payee_data);
             console.log(data);
@@ -94,8 +104,17 @@
             for (let obj of data) {
                 console.log(obj);
             }
+
+            // Convert Arrays to String
+            let dataAsStr = JSON.stringify(data);
+            console.log("Data as string: " + dataAsStr);
+            // Convert String to JSON
+            let dataAsArray = JSON.parse(dataAsStr);
+            console.log("Data as array" + dataAsArray);
+
             return "success";
         }
+        console.log(payees);
     </script>
 </body>
 

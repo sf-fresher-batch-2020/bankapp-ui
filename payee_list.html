@@ -25,14 +25,27 @@
 <center><h1 class="head"> PAYEES</h1></center></br></br>
 
 
-<table style="width:100%">
+<table style="width:100%" >
+  <thead>
   <tr class="header">
     <th>Short Name</th>
     <th>Account Number</th>
     <th>Account Type</th>
     <th>IFSC code</th>
   </tr>
-  <tr>
+  </thead>
+  <tbody id="fillme" >
+
+</tbody>
+        </div>
+    </main>
+    <script>
+        $("#header").load("components/_header.html");
+        function loadpayeedata()
+        {
+           
+          let payeedata = 
+          `<tr>
     <th>Smith</th>
     <th>147852145672</th>
     <th>Saving</th>
@@ -49,12 +62,11 @@
     <th>124875698735</th>
     <th>Saving</th>
     <th>icic01245001</th>
- </tr>
-</table>
-        </div>
-    </main>
-    <script>
-        $("#header").load("components/_header.html");
+ </tr>`
+    document.querySelector("#fillme").innerHTML = payeedata;
+    
+        }
+        loadpayeedata();
     </script>
      <style>
         table {
@@ -88,6 +100,7 @@
            background-color: gray;
            color: red;
        }
+
          </style>
 </body>
 

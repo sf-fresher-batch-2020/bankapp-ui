@@ -23,7 +23,7 @@
         <div id="page-content">
             <!-- Developed by Pasam Pavithra-->
             <h1>Create Account</h1>
-            <form action="" method="post">
+            <form action="" method="post" onsubmit="createaccount()">
                 
                 <label>Select :</label>
                 <select name="select_type" id="select_type" required>
@@ -53,11 +53,28 @@
                 <br/>
                 <br/>
                 <button type="submit">Create Account</button>
-        
+            </form>
         </div>
     </main>
     <script>
         $("#header").load("components/_header.html");
+         function createaccount(){
+            event.preventDefault();
+            alert("Submit Button clicked");
+            var select=document.getElementById("select_type").value;
+            var account=document.getElementById("account_type").value;
+            var branch = document.getElementById("branch").value;
+            console.log("type:" + select + ",accounttype:" + account + ",branch:" + branch);
+            let obj = {"type" : select, "accounttype" : account, "branch" : branch};
+            console.log(obj);
+            let results = sendDatatoBackend(obj);
+            console.log("Results from Backend:" , results);
+        }
+        function sendDatatoBackend(accountdetails){
+            console.log("sending Data to backend, accountdetails");
+            let results = "successfuly account created";
+            return results;
+        }
     </script>
 </body>
 

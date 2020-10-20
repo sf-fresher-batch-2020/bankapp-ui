@@ -63,6 +63,7 @@
     <header id="header">
         <!-- Load Header content-->
     </header>
+    <!-- Developed By Tushant-->
     <div class="container-fluid py-3">
         <div class="row">
             <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
@@ -75,9 +76,9 @@
                         <form action="/echo" method="post" novalidate="novalidate" class="needs-validation">
                             
                             <div class="form-group">
-                                <label for="x_zip" class="control-label mb-1">Name</label>
-                                <input id="x_zip" name="x_zip" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the ZIP/Postal code" autocomplete="postal-code">
-                                <span class="help-block" data-valmsg-for="x_zip" data-valmsg-replace="true"></span>
+                                <label for="x_name" class="control-label mb-1">Name</label>
+                                <input id="x_name" name="x_zip" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the Name" autocomplete="postal-code">
+                                <span class="help-block" data-valmsg-for="x_name" data-valmsg-replace="true"></span>
                             </div>
                             <div class="form-group">
                                 <label for="cc-number" class="control-label mb-1">Card number</label>
@@ -99,9 +100,12 @@
                                         <span class="invalid-feedback order-last">Enter the 3-digit code on back</span>
                                         <div class="input-group-append">
                                             <div class="input-group-text">
+                                                <div class='text-center one-card'>
+                                                    
                                             <span class="fa fa-question-circle fa-lg" data-toggle="popover" data-container="body" data-html="true" data-title="CVV" 
-                                            data-content="<div class='text-center one-card'>The 3 digit code on back of the card..<div class='visa-mc-cvc-preview'></div></div>"
-                                            data-trigger="hover"></span>
+                                            data-content="The 3 digit code on back of the card.."data-trigger="hover"></span>
+                                            
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -111,11 +115,13 @@
                              
                             
                             <div>
-                                <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block" onclick="doIt()">
                                     <i class="fa fa-lock fa-lg"></i>&nbsp;
                                     <span id="payment-button-amount">Add Card </span>
                                     <span id="payment-button-sending" style="display:none;">Sending…</span>
                                 </button>
+                                <div id="message">
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -123,8 +129,21 @@
             </div>
         </div>
     </div>
-    
-    
+  
+    <div class="table-div">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> S.no </th>
+                    <th> Name </th>
+                    <th> Card Number </th>
+                    <th> Exp_date</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        </div>
     <!-- Footer -->
 
 <footer class="page-footer font-small  bg-dark">
@@ -263,7 +282,7 @@
 
 $("#payment-button").click(function(e) {
 
-    
+    e.preventDefault();
     var form = $(this).parents('form');
     
     var cvv = $('#x_card_code').val();
@@ -300,13 +319,29 @@ $("#payment-button").click(function(e) {
         alert(" Enter a valid exp date");
         return false;
       }
+       
+
       
-      
-      
-      form.submit();
     }
-    
+    let card1={name: "demo" ,cc_number: "012345678911", cc_exp: "02/23"};
+      let cards =[];
+      cards.push(card1);
+      localStorage.setItem("CARDS",JSON.stringify(cards));
+
     form.addClass('was-validated');
+});
+   </script>
+   <script>
+          var sno = 0;
+$("form button.btn").click(function() {
+    var name = $("#x_name").val();
+    var cc_number = $("#cc-number").val();
+    var cc_exp= $("#cc-exp").val();
+    var new_row = "<tr><td>" + ++sno + "</td><td>" + name + "</td><td>" + cc_number + "</td><td>" + cc_exp + "</td></tr>";
+    $("table tbody").append(new_row);
+    document.querySelector('#message').innerHTML="Your card details are added in Card list";
+   
+    return false;
 });
    </script>
 </body>
