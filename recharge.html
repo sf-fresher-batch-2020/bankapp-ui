@@ -107,8 +107,8 @@ function sendDataToBackend(userDetails){
         var paymentsTemp = JSON.parse(localStorage.getItem("payments"));
         var payments = paymentsTemp ? paymentsTemp : [];
         payments.push(userDetails);
-       localStorage.setItem("PAYMENTS",JSON.stringify(payments));
-       var payments=JSON.parse(localStorage.getItem("PAYMENTS"));
+       localStorage.setItem("payments",JSON.stringify(payments));
+       var payments=JSON.parse(localStorage.getItem("payments"));
             return result;
         }
        
