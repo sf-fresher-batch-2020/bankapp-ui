@@ -23,7 +23,8 @@
         <div id="page-content">
             <!-- Developed by Dinesh -->
             <h4>KYC</h4>
-    
+        </div>
+        <div id="username></div>
     <form onsubmit="getFormValues()" autocomplete="off">
       <div class="form-group">
         <label class="text-primary">Select</label>
@@ -34,7 +35,7 @@
     </div>
     <div class="form-group">
       <label  class="text-primary">Upload File</label>
-      <input type="file" class="form-control-file" id="myfile">
+      <input type="file" class="form-control-file" id="myfile" required>
     </div>
     <button type="submit" class="btn btn-primary" id="submit_button">Submit</button>
   </form>
@@ -42,19 +43,26 @@
     </main>
     <script>
         $("#header").load("components/_header.html");
-        function getFormValues()
+        event.preventDefault();
+        let obj=JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+         var name=obj.email;
+     document.querySelector("#username").innerHTML="Welcome "+ name;
+     function getFormValues()
     {
       var option=document.getElementById('kyc_user').value;
       var file=document.querySelector('#myfile').value;
       file=file.substr(12);
       console.log("Selected Option ",option);
       console.log('Uploaded File ', file);
-      var obj={"option" :option,"file":file};
+      var obj={"name":name,"option" :option,"file":file, "status":"Pending"};
       sendDetailsToBackend(obj);
     }
     function  sendDetailsToBackend(userDetails)
     {
       console.log("User Details",userDetails);
+        var kyclist=[];
+      kyclist.push(userDetails);
+      localStorage.setItem("KYC_LIST",JSON.stringify(kyclist));
     }
     </script>
 </body>
