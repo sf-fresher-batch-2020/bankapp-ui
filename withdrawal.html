@@ -53,6 +53,15 @@
            var Amount = document.querySelector("#Amount").value;
            let obj ={"ACC_TYP": val,"Amount": Amount};
            console.log(obj);
+           //Local storage
+             var detail={ ACC_TYP:val,Amount:Amount};
+             Accounts.push(detail);
+             localStorage.setItem("Account_Details",JSON.stringify(Accounts));
+             var transaction=[];
+            var obj={ accountid:13244,amount:Amount,transactiontype:"Debit",transactionDate:new Date().toJSON(),Status:"Success",billid:2637437};            
+            transaction.push(obj);
+            localStorage.setItem("Transactions",JSON.stringify(transaction));
+            
             
         }
         $("#header").load("components/_header.html");
