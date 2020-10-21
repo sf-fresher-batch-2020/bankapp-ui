@@ -98,19 +98,20 @@ input[type=number] , input[type=tel] , select {
             let result = sendDataToBackend(obj);
             console.log("Result from Backend:" , result);
         }
-      
-function sendDataToBackend(userDetails){
-            console.log("Sending Data to Backend", userDetails );            
+       var RechargeServiceObj= new RechargeService();
+       RechargeServiceObj.Recharge(Obj);
+//function sendDataToBackend(userDetails){
+            //console.log("Sending Data to Backend", userDetails );            
             // Dummy method, later we will integrate NODEJS REST API
-            let result = "success";            
+            //let result = "success";            
         //var payments = [];
-        var paymentsTemp = JSON.parse(localStorage.getItem("payments"));
-        var payments = paymentsTemp ? paymentsTemp : [];
-        payments.push(userDetails);
-       localStorage.setItem("payments",JSON.stringify(payments));
-       var payments=JSON.parse(localStorage.getItem("payments"));
-            return result;
-        }
+        //var paymentsTemp = JSON.parse(localStorage.getItem("payments"));
+        //var payments = paymentsTemp ? paymentsTemp : [];
+        //payments.push(userDetails);
+       //localStorage.setItem("payments",JSON.stringify(payments));
+       //var payments=JSON.parse(localStorage.getItem("payments"));
+         //   return result;
+        //}
        
     </script>
 </body>
