@@ -82,6 +82,7 @@ input[type=number] , input[type=tel] , select {
         
         </div>
     </main>
+    <script src="modules/RechargeService.js"></script>
     <script>
         $("#header").load("components/_header.html");
         
@@ -95,15 +96,11 @@ input[type=number] , input[type=tel] , select {
             console.log("MobileNo:" + MobileNo + ",Amount:" + Amount + ",Provider:" + Provider);
             let obj = { "Provider" : Provider , "MobileNo" : MobileNo , "Amount": Amount };
             console.log(obj);
-            let result = sendDataToBackend(obj);
+           let rechargeServiceObj = new RechargeService();
+            let result = rechargeServiceObj.save(obj);
             console.log("Result from Backend:" , result);
         }
       
     </script>
-    <script>
-      new RechargeService().save(obj);
-      new RechargeService().list();
-     
-   </script>
 </body>
 </html>
