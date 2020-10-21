@@ -105,7 +105,7 @@
             var branch = document.getElementById("branch").value;
             var account_no=Math.floor(Math.random() * 5000);
             console.log("user:" + userid + ",accounttype:" + account + ",branch:" + branch + ",account no:" + account_no);
-            let obj = {"user" : userid, "accounttype" : account, "branch" : branch , "account no": account_no };
+            let obj = {"user" : userid, "accounttype" : account, "branch" : branch , "account no": account_no,active:"PENDING", balance: 0  };
             console.log(obj);
             let results = sendDatatoBackend(obj);
             console.log("Results from Backend:" , results);
