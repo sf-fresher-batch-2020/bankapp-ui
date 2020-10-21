@@ -12,6 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css"></link>
+    <script rel="js" src="modules/PayeeService.js"></script>
 </head>
 
 <body>
@@ -78,7 +79,7 @@
             var user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
             let created_by = user.email; //getting email and setting as creator of payee
 
-            var payee = {
+            var payee_details = {
                 'name': name,
                 'acc_no': acc_no,
                 'holder_name': holder_name,
@@ -87,16 +88,10 @@
                 'created_by': created_by
             };
 
-            // adding payee to payees array from local storage or creating not exists
-            if (localStorage.getItem("PAYEES")) {
-                var addedPayees = JSON.parse(localStorage.getItem("PAYEES"));
-            } else {
-                var addedPayees = [];
-            }
+            // add payee from separate folder
 
-            addedPayees.push(payee);
-
-            localStorage.setItem("PAYEES", JSON.stringify(addedPayees));
+            var payeeObj = new Payee();
+            payeeObj.add(payee_details);
 
 
             // calling a function to send data to db
