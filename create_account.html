@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="assets/css/style.css"></link>
+        <script src="modules/CreateAccountservice.js"></script>
         <style>
             #table{
                 margin-left: auto; 
@@ -109,12 +110,16 @@
             let results = sendDatatoBackend(obj);
             console.log("Results from Backend:" , results);
             
-            var users =[];
+           /* var users =[];
             var usersTemp = JSON.parse(localStorage.getItem("ACCOUNTS"));
             var users = usersTemp ? usersTemp : [];
             users.push(obj);
             localStorage.setItem("ACCOUNTS", JSON.stringify(users ) );
-            localStorage.getItem("ACCOUNTS");
+            localStorage.getItem("ACCOUNTS");*/
+
+            //create an aobj for account class and call method
+            let ASobj=new CreateAccountService();
+            ASobj.save(obj);
            
         
         function loadData(){
