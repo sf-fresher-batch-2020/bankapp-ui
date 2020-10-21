@@ -67,15 +67,22 @@
             }
         }
             
-       var userObj={"name":Name, "email":email, "password":password, "dob" :DOB,"gender":gender };
-       var registerserviceObj= new registerservice();
-       registerserviceObj.register(userObj);
+      var userObj={"name":Name, "email":email, "password":password, "dob" :DOB,"gender":gender };
+      console.log(userObj);
+      var registerserviceObj= new RegisterService();
+      let result= registerserviceObj.register(userObj);
+      if (result=="success"){
+       alert("registered successfully");
+       window.location.href="login.html"; 
+      }
+      else{
+          alert("registration failed");
+      }
        //var usersTemp = JSON.parse(localStorage.getItem("USERS"));
        //var users= usersTemp ? usersTemp:[];
        // users.push(userObj);
        //localStorage.setItem("USERS",JSON.stringify(users));
-       alert("registered successfully");
-       window.location.href="login.html";
+      
        }
     </script>
 </body>
