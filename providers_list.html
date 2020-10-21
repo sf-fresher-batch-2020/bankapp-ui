@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="assets/css/style.css"></link>
+        
 </head>
 <body>
     <header id="header">
@@ -30,16 +31,13 @@
 </table>
         </div>
     </main>
+    <script src="modules/ProviderService.js"></script>
     <script>
         $("#header").load("components/_header.html");
         function loadData(){
-          var obj1 = { id: 1, title:"Mobile Recharge" , link:"https://www.airtel.com/"};
-          var obj2 = { id: 2, title:"Electrity Recharge" , link:"https://www.tnebd.com/"};
-          var obj3 = { id: 3, title:"Gas booking" , link:"https://myhpgas.in/myHPGas/Index.aspx"};
-          var data = [];
-          data.push(obj1);
-          data.push(obj2);
-          data.push(obj3);
+          let ProviderServiceobj = new ProviderService();
+          var data = ProviderServiceobj.list();
+
           let tableContent = "";
           for(let obj of data){
             tableContent += "<tr>";
