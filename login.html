@@ -44,7 +44,7 @@
             console.log(obj);
             var loginserviceobj= new LoginService();
              loginserviceobj.login(email,password);
-            var user;
+            var user = loginserviceobj.login(email,password);
             if(user)
             {
                 window.location.href="create_account.html";
