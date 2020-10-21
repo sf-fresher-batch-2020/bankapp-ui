@@ -2,10 +2,11 @@ class Payee {
 
     add(payee) {
         // adding payee to payees array from local storage or creating not exists
+        var addedPayees;
         if (localStorage.getItem("PAYEES")) {
-            var addedPayees = JSON.parse(localStorage.getItem("PAYEES"));
+            addedPayees = JSON.parse(localStorage.getItem("PAYEES"));
         } else {
-            var addedPayees = [];
+            addedPayees = [];
         }
         //push payee to array
         addedPayees.push(payee);
