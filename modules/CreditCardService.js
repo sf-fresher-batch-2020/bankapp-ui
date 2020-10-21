@@ -63,10 +63,14 @@ class CreditCardService
               
           });
     }
-
-    
-        
-    
-    
-
+        saveList()
+        {
+          let cardsTemp = JSON.parse(localStorage.getItem("CARDS"));
+            let cards  = cardsTemp ? cardsTemp : [];
+            let sno = 0;
+            for(let obj of cards){
+                var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.name + "</td><td>" + obj.cc_number + "</td><td>" + obj.cc_exp + "</td></tr>";
+                $("table tbody").append(new_row);
+            }
+        }
 }
