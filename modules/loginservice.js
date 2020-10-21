@@ -1,4 +1,4 @@
-class login {
+class LoginService {
     login = function(email, password){
         var usersTemp = JSON.parse(localStorage.getItem("USERS"));
         var users= usersTemp ? usersTemp: [];     
