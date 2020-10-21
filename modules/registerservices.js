@@ -1,4 +1,4 @@
-class registerservice{
+class RegisterService{
     register = function(userObj){
        var usersTemp = JSON.parse(localStorage.getItem("USERS"));
        var users= usersTemp ? usersTemp:[];
