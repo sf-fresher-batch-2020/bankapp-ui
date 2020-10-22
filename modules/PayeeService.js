@@ -22,6 +22,7 @@ class PayeeService {
         } else {
             payeeList = [];
         }
-        alert("There are " + payeeList.length + " payee/payees");
+        // alert("There are " + payeeList.length + " payee/payees");
+        return payeeList;
     }
 }
