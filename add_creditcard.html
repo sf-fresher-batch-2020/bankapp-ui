@@ -73,11 +73,11 @@
                             <h3 class="text-center">Credit Card</h3>
                         </div>
                         <hr>
-                        <form action="/echo" method="post" novalidate="novalidate" class="needs-validation">
+                        <form  method="post" novalidate="novalidate" class="needs-validation">
                             
                             <div class="form-group">
                                 <label for="x_name" class="control-label mb-1">Name</label>
-                                <input id="x_name" name="x_zip" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the Name" autocomplete="postal-code">
+                                <input id="x_name" name="name" type="text" class="form-control" value="" data-val="true" data-val-required="Please enter the Name" autocomplete="text" required>
                                 <span class="help-block" data-valmsg-for="x_name" data-valmsg-replace="true"></span>
                             </div>
                             <div class="form-group">
@@ -115,7 +115,7 @@
                              
                             
                             <div>
-                                <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block" onclick="doIt()">
+                                <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block" >
                                     <i class="fa fa-lock fa-lg"></i>&nbsp;
                                     <span id="payment-button-amount">Add Card </span>
                                     <span id="payment-button-sending" style="display:none;">Sending…</span>
@@ -267,12 +267,10 @@
           })
           
           
-          
           $("#payment-button").click(function(e) {
-          
               e.preventDefault();
+              let validForm = true;
               var form = $(this).parents('form');
-              
               var cvv = $('#x_card_code').val();
               var regCVV = /^[0-9]{3,4}$/;
               var CardNo = $('#cc-number').val();
@@ -282,43 +280,50 @@
               var regYear = /^20|21|22|23|24|25|26|27|28|29|30|31$/;
               var name = $("#x_name").val();
               var expiryDate = $('#cc-exp').val();
-              
               if (form[0].checkValidity() === false) {
                 e.preventDefault();
                 e.stopPropagation();
+                validForm = false;
               }
               else {
                  if (!regCardNo.test(CardNo)) {
-                 
                   $("#cc-number").addClass('required');
                   $("#cc-number").focus();
                   alert(" Enter a valid 12 to 16 card number");
+                  validForm = false;
                   return false;
                 }
                 else if (!regCVV.test(cvv)) {
-                 
                   $("#x_card_code").addClass('required');
                   $("#x_card_code").focus();
                   alert(" Enter a valid CVV");
+                  validForm = false;
                   return false;
                 }
                 else if (!regMonth.test(date[0]) && !regMonth.test(date[1]) ) {
-                 
                   $("#cc_exp").addClass('required');
                   $("#cc_exp").focus();
                   alert(" Enter a valid exp date");
+                  validForm = false;
                   return false;
                 }
-                
               }
-              let card1={name: name ,cc_number: CardNo, cc_exp: expiryDate};
-              new CreditCardService().saveCard(card1);
-              document.querySelector('#message').innerHTML="Your card details are added in Card list";
-              form.addClass('was-validated');
-              
+              console.log("Valid form:" + validForm);
+              if(validForm){
+                console.log("Validation Success");
+                let card1={name: name ,cc_number: CardNo, cc_exp: expiryDate};
+                console.log(card1);
+                //Todo : Need to add validation
+                new CreditCardService().saveCard(card1);
+                document.querySelector('#message').innerHTML="Your card details are added in Card list";
+              }
+              else{
+                form.addClass('was-validated');
+              }
           });
      
      
+          
    </script>
  
 </body>
