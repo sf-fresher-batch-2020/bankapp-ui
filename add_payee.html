@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css"></link>
     <script rel="js" src="modules/PayeeService.js"></script>
+    <script rel="js" src="addPayeeValidator.js"></script>
 </head>
 
 <body>
@@ -79,19 +80,34 @@
             var user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
             let created_by = user.email; //getting email and setting as creator of payee
 
-            var payee_details = {
-                'name': name,
-                'acc_no': acc_no,
-                'holder_name': holder_name,
-                'ifsc': ifsc,
-                'mobile': mobile,
-                'created_by': created_by
-            };
+            //validating name, mobile number and account number
+            try {
 
-            // add payee from separate folder
+                // creating an object for validation class
+                const validationObj = new AddPayeeValidator();
+                // calling validation
+                validationObj.validate(name, acc_no, mobile);
 
-            var payeeObj = new Payee();
-            payeeObj.add(payee_details);
+                // creating payee_details as object
+                var payee_details = {
+                    'name': name,
+                    'acc_no': acc_no,
+                    'holder_name': holder_name,
+                    'ifsc': ifsc,
+                    'mobile': mobile,
+                    'created_by': created_by
+                };
+
+                // add payee from separate folder
+                var payeeObj = new Payee();
+                payeeObj.add(payee_details);
+
+            } catch (err) {
+                alert(err);
+            }
+
+
+
 
 
             // calling a function to send data to db
