@@ -12,13 +12,13 @@
     </header>
     <main class="container-fluid">        
         <div id="page-content">
-            
+            <!-- Developed By Diksha -->
 <center><h1 class="head">View Balance</h1></center></br></br>
 <table style="width:100%" class="table table-bordered">
   <thead>
   <tr class="header">
     <th>Account Name</th>
-    <th>Account Number</th>
+    <!--<th>Account Number</th>-->
     <th>Branch Name</th>
     <th>Account Type</th>
     <th>Available Balance</th>
@@ -49,7 +49,7 @@
             console.log(accountDetails);
             let data = "";
             for(let obj of accountDetails){
-              data += `<tr><td>${obj.name}</td><td>${obj.accountNo}</td><td>${obj.branch}</td><td>${obj.accountType}</td><td>${obj.balance}</td></tr>`;
+              data += `<tr><td>${obj.userid}</td><td>${obj.branch}</td><td>${obj.accounttype}</td><td>${obj.balance}</td></tr>`;
             }
             document.querySelector("#tbl").innerHTML = data;
         }
