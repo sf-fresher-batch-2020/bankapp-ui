@@ -78,8 +78,17 @@
             let mobile = document.querySelector('#mobile').value;
 
             // getting logged in user data
-            var user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
-            let created_by = user.email; //getting email and setting as creator of payee
+            if (localStorage.getItem("LOGGED_IN_USER")) {
+                var user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+                let created_by = user.email; //getting email and setting as creator of payee
+            } else {
+                // alert("Only logged in users can create payees!");
+                var confirmResult = confirm("Only logged in users can add payees! \nRedirect to login page? ");
+                if (confirmResult == true) {
+                    window.location.href = 'login.html';
+                }
+            }
+
 
             //validating name, mobile number and account number
             try {
