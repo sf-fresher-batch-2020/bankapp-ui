@@ -27,14 +27,17 @@
             <div class="card-body">
                 <form onsubmit="getitems()">
               <h5 class="card-title" id="username"></h5>
-              <p class="card-text">Do You Want To:</p>
-              <div class="btn-group btn-group-toggle" data-toggle="buttons" id="radio_button">
+              <span class="card-text">Select The User</span>
+              <select id="select_type" >
+                <option value="User">User</option>
+              </select><br/>
+              <div class="btn-group btn-group-toggle" data-toggle="buttons" id="radio_button" style="margin-top: 10px;">
                 <label class="btn btn-success">
-                  <input type="radio" name="Activate"  value="Your Account Has Been Activated" id="A" required> Activate The Account
+                  <input type="radio" name="Activate"  value="Activated" id="A" required> Activate The Account
                 </label>
                 <br>
                 <label class="btn btn-danger">
-                  <input type="radio" name="Activate" value="Your Account Has Been Deactivated" id="D" required> Deactivate the Account
+                  <input type="radio" name="Activate" value="Deactivated" id="D" required> Deactivate the Account
                 </label>
                 
               </div>
@@ -48,21 +51,49 @@
           </form>
     </main>
     <script>
-         $("#header").load("components/_header.html");
-         var obj = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
-        document.getElementById("username").innerHTML= "Welcome" + " " + obj.name + " " ;
-       function getitems(){
+       $("#header").load("components/_header.html");
+       var acc_value;
+
+function getitems(){
       event.preventDefault();
      var acc = document.getElementById('radio_button').value;
-var acc_value;
+
 if (document.getElementById('A').checked) {
   acc_value = document.getElementById('A').value;
 }
 else if(document.getElementById('D').checked) {
   acc_value = document.getElementById('D').value;
 }
-document.getElementById('message').innerHTML = acc_value;
+document.getElementById('message').innerHTML = "Your" + " " + "Account" + " " +  "has" + " " + "been " + " " + acc_value;
        }
+
+          var loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+        document.getElementById("username").innerHTML= "Welcome" + " " + loggedInUser.name + " " ;
+      let account_details = JSON.parse(localStorage.getItem("ACCOUNTS"));
+      let obj = {"user" : loggedInUser.name, "accounttype" : account_details.accounttype, "branch" : account_details.branch , "account no": account_details.account_no , "active":acc_value, "balance": account_details.balance  };
+            localStorage.setItem("Activation_Status" , JSON.stringify(obj));
+            
+
+      
+
+
+
+      
+
+
+
+
+      /* function displayUsers() {
+            const userServiceObj = new RegisterService();
+            let users = userServiceObj.list();
+            console.log(users);
+            let content = "";
+            for (let u of users) {
+                content += `<option value='${u.email}'> ${u.name} </option>`;
+            }
+            document.querySelector("#select_type").innerHTML = content;
+        }
+        displayUsers();
        /** var user = document.querySelector("#username").value; 
        let accountOption = document.getElementsByName("activate");
        let account = null;
