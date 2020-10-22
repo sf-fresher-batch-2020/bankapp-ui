@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="assets/css/style.css"></link>
+    <script src="services\withdrawl.js"></script>
 </head>
 
 <body>
@@ -81,6 +82,12 @@
              var object={ accountid:13244,amount:Amount,transactiontype:"Debit",transactionDate:new Date().toJSON(),Status:"Success",billid:2637437};            
              transaction.push(object);
              localStorage.setItem("Transactions",JSON.stringify(transaction));
+           
+          //Object for viewing remaining balance
+             var userObj = { "ACC_No": 123, "balance": 1000000 };
+            console.log(userObj);
+            var withdrawlserviceObj = new withdrawlService();
+            let result = withdrawlserviceObj.login(userObj);
 
             
         }
