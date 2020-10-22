@@ -19,6 +19,7 @@
   <tr class="header">
     <th>Account Name</th>
     <th>Account Number</th>
+    <th>Branch Name</th>
     <th>Account Type</th>
     <th>Available Balance</th>
     </tr>
@@ -32,19 +33,23 @@
     <script>
         $("#header").load("components/_header.html");
         </script>
+        <script src="services/AccountService.js"></script>
 <script>
         function accountDetails(){
             
-            let accounts = [ { name: "Naresh", accountNo:123 , balance: 1000, accountType: "SAVINGS"} , 
+            /*let accounts = [ { name: "Naresh", accountNo:123 , balance: 1000, accountType: "SAVINGS"} , 
                           { name: "Dinesh", accountNo:124 , balance: 100000, accountType: "CURRENT"} ];
             localStorage.setItem("ACCOUNTS", JSON.stringify(accounts) );
          
             let accountDetailsTemp = JSON.parse(localStorage.getItem("ACCOUNTS"));
-            let accountDetails = accountDetailsTemp ? accountDetailsTemp : [];
+            let accountDetails = accountDetailsTemp ? accountDetailsTemp : [];*/
+
+            let accountServiceObj = new AccountService();
+            let  accountDetails  = new accountServiceObj.list();
             console.log(accountDetails);
             let data = "";
             for(let obj of accountDetails){
-              data += `<tr><td>${obj.name}</td><td>${obj.accountNo}</td><td>${obj.accountType}</td><td>${obj.balance}</td></tr>`;
+              data += `<tr><td>${obj.name}</td><td>${obj.accountNo}</td><td>${obj.branch}</td><td>${obj.accountType}</td><td>${obj.balance}</td></tr>`;
             }
             document.querySelector("#tbl").innerHTML = data;
         }

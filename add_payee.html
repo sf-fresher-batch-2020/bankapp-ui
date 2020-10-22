@@ -12,6 +12,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css"></link>
+    <script rel="js" src="modules/PayeeService.js"></script>
+    <script rel="js" src="addPayeeValidator.js"></script>
 </head>
 
 <body>
@@ -22,7 +24,8 @@
         <nav class="navbar navbar-secondary bg-secondary">
             <span class="navbar-brand mb-0 text-white">Add Your Bank Account Payee</span>
             <div class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <a class="text-white" href="/payee_list.html">View Payee List</a>
+                <!-- <a class="text-white" href="/payee_list.html">View Payee List</a> -->
+                <button class="btn btn-sm btn-info" onclick="listPayees()">View Payees</button>
             </div>
         </nav>
         <div id="page-content">
@@ -75,60 +78,49 @@
             let mobile = document.querySelector('#mobile').value;
 
             // getting logged in user data
-            var user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
-            let created_by = user.email; //getting email and setting as creator of payee
-
-            var payee = {
-                'name': name,
-                'acc_no': acc_no,
-                'holder_name': holder_name,
-                'ifsc': ifsc,
-                'mobile': mobile,
-                'created_by': created_by
-            };
-
-            // adding payee to payees array from local storage or creating not exists
-            if (localStorage.getItem("PAYEES")) {
-                var addedPayees = JSON.parse(localStorage.getItem("PAYEES"));
+            if (localStorage.getItem("LOGGED_IN_USER")) {
+                var user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+                let created_by = user.email; //getting email and setting as creator of payee
             } else {
-                var addedPayees = [];
+                // alert("Only logged in users can create payees!");
+                var confirmResult = confirm("Only logged in users can add payees! \nRedirect to login page? ");
+                if (confirmResult == true) {
+                    window.location.href = 'login.html';
+                }
             }
 
-            addedPayees.push(payee);
 
-            localStorage.setItem("PAYEES", JSON.stringify(addedPayees));
+            //validating name, mobile number and account number
+            try {
 
+                // creating an object for validation class
+                const validationObj = new AddPayeeValidator();
+                // calling validation
+                validationObj.validate(name, acc_no, mobile);
 
-            // calling a function to send data to db
-            // let result = storePayeeInDB(payee);
-            // console.log(result);
+                // creating payee_details as object
+                var payee_details = {
+                    'name': name,
+                    'acc_no': acc_no,
+                    'holder_name': holder_name,
+                    'ifsc': ifsc,
+                    'mobile': mobile,
+                    'created_by': created_by
+                };
 
+                // add payee from separate folder
+                var payeeObj = new PayeeService();
+                payeeObj.add(payee_details);
+
+                alert("Payee added!");
+            } catch (err) {
+                alert(err);
+            }
         }
 
-        // function to store data in backend
-        function storePayeeInDB(payee_data) {
-
-            console.log("Sending data to backend.....!", payee_data);
-
-            payees.push(payee_data);
-
-            // storing data in arrays
-            var data = [];
-            data.push(payee_data);
-            console.log(data);
-            console.log(data.length);
-            for (let obj of data) {
-                console.log(obj);
-            }
-
-            // Convert Arrays to String
-            let dataAsStr = JSON.stringify(data);
-            console.log("Data as string: " + dataAsStr);
-            // Convert String to JSON
-            let dataAsArray = JSON.parse(dataAsStr);
-            console.log("Data as array" + dataAsArray);
-
-            return "success";
+        function listPayees() {
+            var payeeObj = new PayeeService();
+            payeeObj.list();
         }
     </script>
 </body>

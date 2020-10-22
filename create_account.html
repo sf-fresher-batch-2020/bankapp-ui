@@ -44,7 +44,7 @@
                 <tr>
                 <td><label>Select UserId :</label></td>
                 <td><select name="select_type" id="select_type" required>
-                    <option value="">--PLEASE SELECT --</option>
+                   <option value="">--PLEASE SELECT --</option>
                     <option value="user">User</option>
                     <option value="admin">Admin</option>
                 </select>
@@ -96,6 +96,18 @@
     </main>
     <script>
         $("#header").load("components/_header.html");
+        function displayUsers() {
+            let userTemp = JSON.parse(localStorage.getItem("USERS"));
+            let users= userTemp ? userTemp : [];
+            console.log(users);
+            let content = "";
+            for (let u of users) {
+                content += `<option value='${u.email}'> ${u.name} </option>`;
+            }
+            document.querySelector("#select_type").innerHTML = content;
+        }
+        displayUsers();
+
        function createaccount()
          {
             event.preventDefault();
@@ -104,8 +116,8 @@
             var account=document.getElementById("account_type").value;
             var branch = document.getElementById("branch").value;
             var account_no=Math.floor(Math.random() * 5000);
-            console.log("user:" + userid + ",accounttype:" + account + ",branch:" + branch + ",account no:" + account_no);
-            let obj = {"user" : userid, "accounttype" : account, "branch" : branch , "account no": account_no };
+            console.log("userid:" + userid + ",accounttype:" + account + ",branch:" + branch + ",account no:" + account_no);
+            let obj = {"userid" : userid, "accounttype" : account, "branch" : branch , "account no": account_no , "status" : "PENDING" , "balance": 0};
             console.log(obj);
             let results = sendDatatoBackend(obj);
             console.log("Results from Backend:" , results);
@@ -130,11 +142,12 @@
                 <td><p>Click here to Activate an account</p></td>
           </tr>
           <tr>
-            <td>  <a href="kyc.html">Activate an account</a></td>
+            <td>  <a href="account_activation.html">Activate an account</a></td>
           </tr>`;
           document.querySelector("#footer").innerHTML = tData;
         }
         loadData();
+
          }
         function loadAccountTypes(){
             event.preventDefault();
