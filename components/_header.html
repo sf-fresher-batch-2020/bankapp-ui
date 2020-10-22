@@ -4,64 +4,96 @@
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="index.html" >Home</a>
+                <a class="nav-link" href="index.html" data-loggedin=false>Home</a>
             </li>
            
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" data-logged="false">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Features</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="account_type_list.html">Account Types</a>    
-                    <a class="dropdown-item" href="branch_list.html">List Branches</a>                
+                    <a class="dropdown-item" href="account_type_list.html" data-loggedin=false>Account Types</a>    
+                    <a class="dropdown-item" href="branch_list.html" data-loggedin=false>List Branches</a>                
                 </div>
             </li>
             
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" data-loggedin="true">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="deposit.html">Deposit</a>
-                     <a class="dropdown-item" href="withdrawal.html">Withdrawal</a>
-                     <a class="dropdown-item" href="fund_transfer.html">Fund Transfer</a>
-                    <a class="dropdown-item" href="transaction_list.html">View Transactions</a>
-                    <a class="dropdown-item" href="view_balance.html">View Balance</a>
+                    <a class="dropdown-item" href="deposit.html" data-loggedin=true>Deposit</a>
+                     <a class="dropdown-item" href="withdrawal.html" data-loggedin=true>Withdrawal</a>
+                     <a class="dropdown-item" href="fund_transfer.html" data-loggedin=true>Fund Transfer</a>
+                    <a class="dropdown-item" href="transaction_list.html" data-loggedin=true>View Transactions</a>
+                    <a class="dropdown-item" href="view_balance.html" data-loggedin=true> View Balance</a>
                     
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" data-loggedin="true">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Payments</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                     <a class="dropdown-item" href="payee_list.html">List Payee</a>          
-                    <a class="dropdown-item" href="add_payee.html">Add Payee</a>
-                    <a class="dropdown-item" href="recharge.html">Recharge</a>
+                    <a class="dropdown-item" href="add_payee.html" data-loggedin=true>Add Payee</a>
+                    <a class="dropdown-item" href="recharge.html" data-loggedin=true>Recharge</a>
                 </div>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" data-loggedin=true>
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">CreditCard</a>
                 <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="add_creditcard.html">Add Credit Card</a>          
-                    <a class="dropdown-item" href="list_creditcard.html">List Credit Card</a>
+                    <a class="dropdown-item" href="add_creditcard.html" data-loggedin=true>Add Credit Card</a>          
+                    <a class="dropdown-item" href="list_creditcard.html" data-loggedin=true>List Credit Card</a>
                     
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="create_account.html">Create Account</a>
+                <a class="nav-link" href="create_account.html" data-loggedin=true>Create Account</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="account_activation.html">Account Activation</a>
+                <a class="nav-link" href="account_activation.html" data-loggedin=true>Account Activation</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="kyc.html">KYC</a>
+                <a class="nav-link" href="kyc.html" data-loggedin=true>KYC</a>
             </li>
             
             
         </ul>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item ">
-                <a class="nav-link" href="login.html">Login</a>
+                <a class="nav-link" href="login.html" data-loggedin=false>Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="register.html">Register</a>
+                <a class="nav-link" href="register.html" data-loggedin=false>Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="" data-loggedin=true style="display: block;">Welcome </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="" onclick="logout()" data-loggedin=true>(Logout) </a>
             </li>
         </ul>
         
     </div>
 </nav>
+<script>
+var user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+console.log("LOGGED_IN_USER", user);
+if(user){
+    console.log("User is logged in");
+    // Hide menus which has data-loggedin=false
+    // Show menus which has data-loggedin=true
+    document.querySelectorAll(".nav-link[data-loggedin=false] , .nav-item[data-loggedin=false] , .dropdown-item[data-loggedin=false]").forEach(obj => obj.style.display= "none" );
+    document.querySelectorAll(".nav-link[data-loggedin=true] , .nav-item[data-loggedin=true] , .dropdown-item[data-loggedin=true]").forEach(obj => obj.style.display= "block" );
+}
+else{
+    
+    console.log("User is not logged in");
+    // Hide menus which has data-loggedin=true
+    // Show menus which has data-loggedin=false
+    document.querySelectorAll(".nav-link[data-loggedin=true] , .nav-item[data-loggedin=true] , .dropdown-item[data-loggedin=true]").forEach(obj => obj.style.display= "none" );
+    document.querySelectorAll(".nav-link[data-loggedin=false] , .nav-item[data-loggedin=false] , .dropdown-item[data-loggedin=false]").forEach(obj => obj.style.display= "block" );
+
+}
+
+function logout(){
+    localStorage.clear();
+    window.location.href = "login.html";
+}
+
+</script>

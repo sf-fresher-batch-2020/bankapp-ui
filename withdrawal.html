@@ -42,6 +42,21 @@
          function login(){
             event.preventDefault();
             alert("Submit Btn clicked"); 
+              //validator
+            var Amount = document.querySelector("#Amount").value;
+            //Step 2: Validation
+            try {               
+                if(Amount <=0 ){
+                    throw "Amount cannot be zero (or) less then zero";
+                }
+                else if (Amount > 20000){
+            throw "Amount should not exceeds 20 thousand";
+                }
+                
+            }
+            catch(err){
+                alert(err);
+            }
             var radios = document.getElementsByName('Typ_Acc');
 
             for (var i = 0, length = radios.length; i < length; i++) {

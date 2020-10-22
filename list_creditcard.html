@@ -45,13 +45,15 @@
                             <th> S.no </th>
                             <th> Name </th>
                             <th> Card Number </th>
-                            <th> Exp_date</th>
+                            <th> Exp date</th>
+                            <th>Remove Card</th>
                         </tr>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>
                 </div>
+                
         </div>
     </main>
     
@@ -182,7 +184,25 @@
     <script src="modules/CreditCardService.js"></script>
     <script>
         $("#header").load("components/_header.html");
-       new CreditCardService().saveList();
+        function displayCards(){
+         let cards =  new CreditCardService().list();
+         console.log(cards);
+         let sno = 0;
+            for(let obj of cards){
+                var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.name + "</td><td>" + obj.cc_number + "</td><td>" + obj.cc_exp + "</td><td><button onclick='deleteRecord(" + obj.cc_number+ ")'>Delete</button><td></tr>";
+                $("table tbody").append(new_row);
+            } 
+          }
+          function deleteRecord(ccNum){
+              console.log("Going to delete");
+              console.log(ccNum);
+              let cards = new CreditCardService().list();
+              let index = cards.findIndex ( obj=>obj.cc_number == ccNum);
+              cards.splice(index,1);
+              localStorage.setItem("CARDS", JSON.stringify(cards));
+              window.location.reload();
+            }
+        displayCards();
     </script>
 </body>
 

@@ -10,8 +10,8 @@
     <!-- jQuery and JS bundle w/ Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
-        crossorigin="anonymous"></script>
+    <scrip src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
+        crossorigin="anonymous"></scrip>
         <link rel="stylesheet" href="assets/css/style.css"></link>
 </head>
 
@@ -49,23 +49,44 @@
                             <td>Transaction 2</td>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tbl">
                    </tbody>
             </table>
             <button type="submit">SUBMIT</button>
      </div>
     </main>
     <script>
-        $("#header").load("components/_header.html");
-            var transactions = [];
+           $("#header").load("components/_header.html");
+    </script>
+
+        <script src="services/TransactionsService.js"></script>
+        <script>
+        
+            function transactionList() {
+                
+            
+        
+           /* var transactions = [];
             var obj = { accountid:12,amount :10,transactionType: "CREDIT",transactionDate:new Date().toJSON(),comment:"Transaction1"}
             transactions.push(obj);
-            localStorage.setItem("TRANACTIONS",JSON.stringify(transactions));
+            localStorage.setItem("TRANSACTIONS",JSON.stringify(transactions));
             var transactionsTemp=JSON.parse(localStorage.getItem("TRANSACTIONS"));
-            var transactionList =  transactionsTemp ?transactionsTemp : [];
-            for( let obj in transactionList ){ 
-                TransactionList
+            var transactionList =  transactionsTemp ?transactionsTemp : [];*/
+        
+            Let transactionServiceObj = new TransactionService();
+            Let transactionList =transactionServiceObj.list();
+            console.log(transactionList);
+            let data= "";
+            for( let obj of transactionList ){ 
+                data += `<tr><td>${obj.accountid}</td><td>${obj.amount}</td><td>${obj.transactionType}</td><td>${obj.transactionDate}</td><td>${obj.comment}</td></tr>`;
             }
+            document.querySelector("#tbl").innerHTML = data;
+
+            
+        }
+            transactionList();
+
     </script>
 </body>
     </html>
+
