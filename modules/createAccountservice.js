@@ -8,4 +8,11 @@ class CreateAccountService
             localStorage.setItem("ACCOUNTS", JSON.stringify(users ) );
             localStorage.getItem("ACCOUNTS");
     }
+    
+    list = function() {
+    var usersTemp = JSON.parse(localStorage.getItem("ACCOUNTS"));
+    var accounts = usersTemp ? usersTemp : [];
+    return accounts; 
+
+    }
 }
