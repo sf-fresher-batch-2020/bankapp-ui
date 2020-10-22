@@ -74,10 +74,10 @@
             var transactionList =  transactionsTemp ?transactionsTemp : [];*/
         
             Let transactionServiceObj = new TransactionService();
-            Let transactionList =transactionServiceObj.list();
-            console.log(transactionList);
+            Let transactionlist =transactionServiceObj.list();
+            console.log(transactionlist);
             let data= "";
-            for( let obj of transactionList ){ 
+            for( let obj of transactionlist ){ 
                 data += `<tr><td>${obj.accountid}</td><td>${obj.amount}</td><td>${obj.transactionType}</td><td>${obj.transactionDate}</td><td>${obj.comment}</td></tr>`;
             }
             document.querySelector("#tbl").innerHTML = data;
