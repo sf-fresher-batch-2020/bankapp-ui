@@ -38,7 +38,10 @@
         <div id="page-content">
             <!--Developed by Tushant -->
             <h1>List Credit Card</h1>
-            <div class="table-div">
+            <div id="message">
+
+            </div>
+            <div class="table-div" id='card-table'>
                 <table class="table">
                     <thead>
                         <tr>
@@ -188,10 +191,17 @@
          let cards =  new CreditCardService().list();
          console.log(cards);
          let sno = 0;
-            for(let obj of cards){
+            if (cards.length > 0){
+              for(let obj of cards){
                 var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.name + "</td><td>" + obj.cc_number + "</td><td>" + obj.cc_exp + "</td><td><button onclick='deleteRecord(" + obj.cc_number+ ")'>Delete</button><td></tr>";
                 $("table tbody").append(new_row);
-            } 
+              }
+              document.querySelector("#card-table").style.display = "block";
+            }
+            else{
+              document.querySelector("#card-table").style.display = "none";
+              document.querySelector("#message").innerHTML= "<div class='alert alert-danger'>No cards added. Please Add the Card.</div>";
+            }  
           }
           function deleteRecord(ccNum){
               console.log("Going to delete");
